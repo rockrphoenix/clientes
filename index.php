@@ -9,315 +9,11 @@
     
     $redes = $red->fetch_array(MYSQL_ASSOC);
     $aConf = $muestra->obtenerConfiguracion();
-
-     //var_dump($prop);
-      //var_dump($prop2);
-       //var_dump($prop3);
-    
-   
-	
-    
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<title>Cliente - Prueba</title>
-
-	<!-- Bootstrap core CSS -->
-	<link href="assets/css/bootstrap.css" rel="stylesheet">
-
-	<!-- Style CSS -->
-	<link href="style.css" rel="stylesheet">
-    
-	<!-- Google Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic' rel='stylesheet' type='text/css'>
-
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	  <script src="assets/js/html5shiv.js"></script>
-	  <script src="assets/js/respond.min.js"></script>
-	<![endif]-->
-
-	<!-- Favicons -->
-	<link rel="shortcut icon" href="assets/ico/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="assets/ico/apple-touch-icon.png" />
-	<link rel="apple-touch-icon" sizes="57x57" href="assets/ico/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="assets/ico/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="assets/ico/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="assets/ico/apple-touch-icon-144x144.png">
-     <script src="assets/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/combos.js"></script>
-    <!-- Termina combos dependientes-->
-  
-    
-
-</head>
-<body>
-<input type="hidden" name="color_A" id="color_A" <?php echo 'value="#'.$aConf[ColorFondo].'"'; ?> >
-    <input type="hidden" name="color_B" id="color_B" <?php echo 'value="#'.$aConf[ColorPrincipal].'"'; ?> >
-        <!--<div class="toolbar-wrapp">
-            <div class="sticky-toolbar">
-                <ul>
-                    <li id="support"><a title="Support Menu" title="" href="#" ><i class="fa fa-link"></i></a></li>
-                    <li id="help"><a href="#ContactFormModal" data-toggle="modal" title="Ask a question"><i class="fa fa-question"></i></a></li>
-                    <li id="accountlogin"><a title="Login account" href="#" ><i class="fa fa-lock"></i></a></li>
-                </ul>
-            </div>--><!--/ sticky-toolbar-->
+<?php require_once("includes/header.php") ?>
+<?php require_once("includes/nav.php") ?>
                 
-            <!--<div class="popup">
-                <ul>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="forum.html">Support</a></li>
-                    <li><a href="ticket.html">Open Ticket</a></li>
-                </ul>
-            </div>--><!--/ popup-->
-        
-            <!--<div class="loginpopup">
-                <h3><i class="fa fa-key"></i> Agent Login Form</h3>
-                <form id="loginform" method="post" name="loginform" action="http://designingmedia.com/html/estate-plus/login.php">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Remember me</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <a href="login.html" title="" class="btn btn-primary">Sign in</a> <a title="" href="login.html" class="btn btn-primary">Register</a>
-                    </div>
-                </form>
-            </div>--><!--/ login-popup-->
-        <!--</div>--><!--/ toolbar-wrapp-->
 
-		<!--<div class="modal fade" id="ContactFormModal" tabindex="-1" role="dialog" aria-labelledby="ContactFormModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="big_title">Do you have questions?
-                            <small>Dont worry! We're here to help you</small>
-                        </h3>
-                    </div>
-                    <div class="modal-body clearfix">
-                    	<div class="text-left">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<div class="ImageWrapper boxes_img">
-                            		<img src="demos/01_about.jpg" class="img-responsive" alt="">
-									<div class="ImageOverlayH"></div>
-										<div class="Buttons StyleSc">
-											<span class="WhiteSquare"><a href="#"><i class="fa fa-facebook"></i></a></span>
-											<span class="WhiteSquare"><a href="#"><i class="fa fa-twitter"></i></a></span>
-											<span class="WhiteSquare"><a href="#"><i class="fa fa-google-plus"></i></a></span>
-										</div>
-								</div>
-                                <div class="servicetitle"><h3>Contact Details</h3></div>
-                                <ul>
-                                    <li><i class="fa fa-external-link"></i> www.yoursite.com</li>
-                                    <li><i class="fa fa-envelope"></i> info@yoursite.com</li>
-                            		<li><i class="fa fa-phone-square"></i> +90 333 444 55 66</li>
-                            		<li><i class="fa fa-phone-square"></i> +90 333 444 55 66</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <form id="contact" class="row" action="http://designingmedia.com/html/estate-plus/contact.php" name="contactform" method="post">
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name"> 
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Email"> 
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
-                                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject"> 
-                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Your Message ..."></textarea>
-                                    <button type="button" class="btn btn-primary">Send Message</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-				</div>--><!-- /.modal-content -->
-			<!--</div>--><!-- /.modal-dialog -->
-		<!--</div>--><!-- /.modal -->
-        
-		<div class="topbar clearfix">
-        	<div class="container">
-            	<div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="callus">
-                            <p>
-                            <span><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></span>
-                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></span>
-                            </p>
-                        </div><!-- end callus-->
-                    </div><!-- end col-lg-6 -->
-                    
-            	</div><!-- end row -->
-			</div><!-- end container -->
-		</div><!-- end topbar -->        <header class="header1">
-			<div class="container">
-            	<div class="row header-row">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                       <div class="logo-wrapper clearfix">
-							<div class="logo">
-								<a href="index.html" title="Home">
-									<img src="logotipo/logo.jpg" alt="Estate">
-								</a>
-							</div><!-- /.site-name -->
-						</div><!-- /.logo-wrapper -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                    </div>      
-                    <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
-                        <div class="social clearfix pull-right">
-                        
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
-                        </div><!-- end social -->
-                    </div>     
-                </div><!-- end row -->
-                <nav class="navbar navbar-default fhmm" role="navigation">
-                    <div class="menudrop container">
-                        <div class="navbar-header">
-                            <button type="button" data-toggle="collapse" data-target="#defaultmenu" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                        </div><!-- end navbar-header -->
-                        <div id="defaultmenu" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <!-- Mega Menu -->
-                                <li class="dropdown fhmm-fw active"><a href="index.php"><i class="fa fa-home"></i> INICIO</a></li><!-- mega menu -->
-                                <!-- list elements -->
-                                
-                                <!-- list elements -->
-                                <li class="dropdown fhmm-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">BÚSQUEDA AVANZADA <b class="caret"></b></a>
-                                    <ul class="dropdown-menu half">
-                                        <li class="fhmm-content withoutdesc">
-                                            <div class="row">
-                                                <form id="advanced_search_module" class="clearfix" action="procesa/busqueda.php" name="advanced_search_module" method="post">
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <label for="select_estado">Estado</label>
-                                                        <select id="select_estado" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <?php $estate=$muestra->Estados(); echo $estate; ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <label for="select_municipio">Delegación/Municipio</label>
-                                                        <select id="select_municipio" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                           
-                                                        </select>
-                                                    </div>                                               
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="select_status">Estatus</label>
-                                                        <select id="select_status" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <!--<option value="rent">On Rent</option>
-                                                            <option value="sale">On Sale</option>-->
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="select_tipo">Tipo de propiedad</label>
-                                                        <select id="select_tipo" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <!--<option value="apertment">Apertment</option>
-                                                            <option value="condo">Condo</option>
-                                                            <option value="villa">Villa</option>
-                                                            <option value="cottage">Cottage</option>
-                                                            <option value="house">House</option>-->
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="recamaras">Recámaras</label>
-                                                        <select id="recamaras" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <!--<option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>-->
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="banos">Baños</label>
-                                                        <select id="banos" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <!--<option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>-->
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="preciomin">Precio Mínimo</label>
-                                                        <select id="preciomin" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            <option value="500000">- $500,000.00</option>
-                                                            <option value="1000000">$1,000,000.00</option>
-                                                            <option value="5000000">$5,000,000.00</option>
-                                                            <option value="10000000">$10,000,000.00</option>
-                                                            <option value="25000000">$25,000,000.00</option>
-                                                            
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                        <label for="preciomax">Precion Máximo</label>
-                                                        <select id="preciomax" class="form-control">
-                                                        <option value="seleccione" selected="yes">Seleccione</option>
-                                                            
-                                                            <option value="1000000">$1,000,000.00</option>
-                                                            <option value="5000000">$5,000,000.00</option>
-                                                            <option value="10000000">$10,000,000.00</option>
-                                                            <option value="25000000">$25,000,000.00</option>
-                                                            <option value="50000000">$50,000,000.00 +</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <hr>
-                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                        <p>Para resultados más rápidos, por favor utilice el formulario de arriba, si desea contactarnos para obtener resultados confidenciales, <a href="contact.html">póngase en contacto </a> con nosotros.</p>  
-                                                        
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                        <a href="#" class="btn btn-primary btn-block"><i class="fa fa-search"></i> BUSCAR</a></div> 
-                                                </form>
-                                            </div>
-                                        </li><!-- end grid demo -->
-                                    </ul><!-- end drop down menu -->
-                                </li><!-- end list elements -->
-                                <!-- list elements -->
-                                <li class="dropdown fhmm-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">PROPIEDADES DESTACADAS <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="fhmm-content fullwidth">
-                                            <div class="row">
-                                                <?php 
-                                    
-                                                    echo $prop2;
-                                                 ?>
-                                               
-                        
-                                            </div><!-- end row -->
-                                        </li><!-- end grid demo -->
-                                    </ul><!-- end drop down menu -->
-                                </li><!-- end list elements -->
-                                <!-- standard drop down -->
-                                <li><a href="contact.php">CONTACTO</a></li>
-                            </ul><!-- end nav navbar-nav -->
-                        </div><!-- end #navbar-collapse-1 -->
-                     </div><!-- end dm_container -->
-                </nav><!-- end navbar navbar-default fhmm -->
-            </div><!-- end container -->
-        </header><!-- end header -->
         
 		<section id="one-parallax" class="parallax" style="background-image: url('demos/01_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
         <div class="mapandslider">
@@ -339,84 +35,78 @@
                     
 					<div class="col-lg-4 col-md-4 col-sm-12">
                         <div class="searchmodule clearfix" data-effect="slide-right">
-                        <form id="advanced_search" action="procesa/busqueda.php" class="clearfix" name="advanced_search" method="post">
+                        <form id="advanced_search" action="resultadosBusqueda.php" class="clearfix" name="advanced_search" method="post">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <label for="select_estado2">Estado</label>
-								<select id="select_estado2">
+								<select name="select_estado" id="select_estado2">
                                 <option value="seleccione" selected="yes">Seleccione</option>
 									<?php echo $estate; ?>
 								</select>                                     
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <label for="select_municipio2">Delegación/Municipio</label>
-                                <select id="select_municipio2">
+                                <select name="select_municipio" id="select_municipio2">
                                 <option value="seleccione" selected="yes">Seleccione</option>
                                     
                                 </select>
                             </div>                                               
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <label for="select_status2">Estatus</label>
-                                <select id="select_status2" >
+                                <select name="select_status" id="select_status2" >
                                 <option value="seleccione" selected="yes">Seleccione</option>
-                                    <!--<option value="rent">On Rent</option>
-                                    <option value="sale">On Sale</option>-->
+                                    
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <label for="select_tipo2">Tipo</label>
-                                <select id="select_tipo2" >
+                                <select name="select_tipo" id="select_tipo2" >
                                 <option value="seleccione" selected="yes">Seleccione</option>
-                                   <!-- <option value="apertment">Apertment</option>
-                                    <option value="condo">Condo</option>
-                                    <option value="villa">Villa</option>
-                                    <option value="cottage">Cottage</option>
-                                    <option value="house">House</option>-->
+                                   
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <label for="recamaras2">Recámaras</label>
-                                <select id="recamaras2" >
+                                <select name="recamaras" id="recamaras2" >
                                 <option value="seleccione" selected="yes">Seleccione</option>
-                                    <!--<option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>-->
+                                    
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <label for="banos2">Baños</label>
-                                <select id="banos2">
+                                <label for="banos">Baños</label>
+                                <select name="banos" id="banos2">
                                 <option value="seleccione" selected="yes">Seleccione</option>
-                                    <!--<option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>-->
+                                   
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <label for="min_price">Precio Mínimo</label>
-                                <select id="min_price" >
-                                    <option value="0">- $500,000.00</option>
-                                                            <option value="1">$1,000,000.00</option>
-                                                            <option value="5">$5,000,000.00</option>
-                                                            <option value="10">$10,000,000.00</option>
-                                                            <option value="25">$25,000,000.00</option>
+                                <label for="preciomin">Precio Mínimo</label>
+                                <select name="preciomin" id="preciomin" >
+                                        <option value="seleccione" selected="yes">Seleccione</option>
+                                        <option value="0">$0.00</option>
+                                        <option value="500000">$500,000.00</option>
+                                        <option value="1000000">$1,000,000.00</option>
+                                        <option value="5000000">$5,000,000.00</option>
+                                        <option value="10000000">$10,000,000.00</option>
+                                        <option value="25000000">$25,000,000.00</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <label for="max_price">Precio Máximo</label>
-                                <select id="max_price" >
-                                   <option value="1">$1,000,000.00</option>
-                                                            <option value="5">$5,000,000.00</option>
-                                                            <option value="10">$10,000,000.00</option>
-                                                            <option value="25">$25,000,000.00</option>
-                                                            <option value="50">$50,000,000.00 +</option>
+                                <label for="preciomax">Precio Máximo</label>
+                                <select name="preciomax" id="preciomax" >
+                                    <option value="seleccione" selected="yes">Seleccione</option>
+                                    <option value="500000">$500,000.00</option>
+                                    <option value="1000000">$1,000,000.00</option>
+                                    <option value="5000000">$5,000,000.00</option>
+                                    <option value="10000000">$10,000,000.00</option>
+                                    <option value="25000000">$25,000,000.00</option>
+                                    <option value="50000000">$50,000,000.00 +</option>
                                 </select>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <a href="#" class="btn btn-inverse btn-block"><i class="fa fa-search"></i> BUSCAR PROPIEDAD</a>
+                                <input type="hidden" name="action" value="avanzada2">
+                                 <input type="submit" class="btn btn-inverse btn-block" value="BUSCAR">
+                                
                             </div>
 						</form>
                         </div><!-- end search module -->
@@ -529,20 +219,20 @@
                                             <div class="widget clearfix">
                                                 <div class="agents_widget">
                                                     <div class="title"><h3><i class="fa fa-users"></i> Nuestros asesores</h3></div>
-                    <?php 
-                        $asesores = $muestra->asesores();
-                                while ($as = $asesores->fetch_array(MYSQL_ASSOC)) {
-                                    echo'<div class="agent boxes clearfix" data-effect="slide-right">
-                                            <div class="image">
-                                                <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
-                                            </div><!-- image -->
-                                            <div class="agent_desc">
-                                                <h3 class="title">'.$as['nombres'].'</h3>
-                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
-                                                <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
-                                                <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
-                                            </div><!-- agento desc -->
-                                        </div>'; }?>
+                                                    <?php 
+                                                        $asesores = $muestra->asesores();
+                                                                while ($as = $asesores->fetch_array(MYSQL_ASSOC)) {
+                                                                    echo'<div class="agent boxes clearfix" data-effect="slide-right">
+                                                                            <div class="image">
+                                                                                <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
+                                                                            </div><!-- image -->
+                                                                            <div class="agent_desc">
+                                                                                <h3 class="title">'.$as['nombres'].'</h3>
+                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
+                                                                            </div><!-- agento desc -->
+                                                                        </div>'; }?>
                      </div><!-- end of agents_widget -->
                     </div><!-- end of widget -->
                      <div class="widget text-center clearfix"></div>
@@ -675,26 +365,7 @@
            <!--</div>--><!-- container -->
         <!--</footer>--><!-- footer1 -->
         
-        <section class="copyright">
-        	<div class="container">
-            	<div class="row">
-                	<div class="col-lg-6 col-sm-6 col-md-6">
-                        <p><small>Copyright &copy; 2014 Yet! Inmobiliario. Creado por <a href="http://www.gruposyse.com" target="_blank">Grupo SYSE</a>.</small></p>
-                    </div>
-                	<div class="col-lg-6 col-sm-6 col-md-6">
-                        <div class="social clearfix pull-right">
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Twitter" title=""  <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
-                            <!--<span><a data-placement="top" data-toggle="tooltip" data-original-title="Google Plus" title="" href="#"><i class="fa fa-google-plus"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Linkedin" title="" href="#"><i class="fa fa-linkedin"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Github" title="" href="#"><i class="fa fa-github"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Pinterest" title="" href="#"><i class="fa fa-pinterest"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="RSS" title="" href="#"><i class="fa fa-rss"></i></a></span>-->
-                        </div><!-- end social -->
-                    </div>
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section><!-- end copyright -->
+   <?php require_once("includes/footer.php") ?>    
         
     
 	<!-- Bootstrap core and JavaScript's

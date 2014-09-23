@@ -1,5 +1,7 @@
 <?php
 	require_once("../clases/class.datos.php");
+	
+
 	if (isset($_POST[elegido])) {
 		$listar = new Datos($_POST);
 		$municipios = $listar->combosCodigoA();
@@ -25,9 +27,7 @@
 		echo "nada";
 	}
 
-	$avanzada=new Datos($_POST);
-	$busqueda=$listar->busquedAvanzada();
-	echo $busqueda;
+	
 
 	
 ?>

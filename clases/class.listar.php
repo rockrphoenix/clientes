@@ -12,7 +12,9 @@
 		function __construct()
 		{
 			$_POST;
+			$_GET;
 			parent::__construct();
+			//$key=$this->conexion->real_escape_string($_POST);
 		}
 		function obtenerConfiguracion(){
 			$conf = $this->conexion->query("SELECT ColorFondo, ColorPrincipal, facebook, twitter FROM tblconfiguracion WHERE idinmobiliaria = '$this->inmobiliaria'")or die("No obtengo la configuración");
@@ -26,39 +28,39 @@
 		function oficinas(){
 			$ofi = $this->conexion->query("SELECT * FROM tbloficina WHERE idcliente = '$this->id' AND status ='1'")or die("No puedo conectarme a oficinas");
 			return $ofi;
-			$this->conexion->close();
+			
 			$ofi->free();
 		}
 		function asesores(){
 			$ases=$this->conexion->query("SELECT * FROM tblasesores WHERE idcliente='$this->id'AND estatus ='2'")or die("No puedo conectarme a asesores");
 			return $ases;
-			$this->conexion->close();
+			
 			$ases->free();
 		}
 
 		function redes(){
 			$red=$this->conexion->query("SELECT * FROM consultacliente WHERE idCliente='$this->id'")or die("no se realizo la consulta");
 			return $red;
-			$this->conexion->close();
+			
 			$red->free();
 		}
 		function seccion(){
 			$secc=$this->conexion->query("SELECT * FROM tblseccion WHERE idcliente='$this->id'AND estatus ='1'")or die("No puedo conectarme a asesores");
 			return $secc;
-			$this->conexion->close();
+			
 			$secc->free();
 		}
 		function datosFacturacion(){
 			$datos=$this->conexion->query("SELECT ubi.idubicacion as idubicacion, Estado, Ciudad, Municipio, Colonia, Calle, NumeroExterior, NumeroInterior,CP, nombrers, rfc, tel, email FROM tblubicacion as ubi INNER JOIN tbldatosfact as datosf on datosf.idubicacion=ubi.idubicacion AND idcliente='$this->idcliente'")or die("no se obtuveiron datos");
 			return $datos;
-			$this->conexion->close();
+			
 			$datos->free();
 		}
 
 		function muestraImagenes(){
-			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND idPropiedad='9'")or die("no se obtuveiron datos");
-			while ( $fila=$prop->fetch_array(MYSQL_ASSOC)) {
-					$dir = "../../imagenes_cy/".$this->id."/".$fila[idPropiedad]."";
+			
+			
+					$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
 					//var_dump($dir);
 					if ($gestor = opendir($dir)) {
 						$cont = 1;
@@ -76,7 +78,7 @@
 					    }
 					    closedir($gestor);
 					}
-				}	
+					
 			
 			return $str;
 			
@@ -322,6 +324,106 @@
        		}
        		return $dato;
        	}
+
+       	function busquedAvanzada(){
+			$estado=$this->conexion->real_escape_string($_POST['select_estado']);
+			$municipio=$this->conexion->real_escape_string($_POST['select_municipio']);
+			$estatus=$this->conexion->real_escape_string($_POST['select_status']);
+			$tipo=$this->conexion->real_escape_string($_POST['select_tipo']);
+			$recamaras=$this->conexion->real_escape_string($_POST['recamaras']);
+			$banos=$this->conexion->real_escape_string($_POST['banos']);
+			$preciomin=$this->conexion->real_escape_string($_POST['preciomin']);
+			$preciomax=$this->conexion->real_escape_string($_POST['preciomax']);
+			
+
+			$qry= "SELECT * FROM consultapropiedad2 WHERE ";
+			if ($estado!= "") {
+				$qry.="Estado='".$estado."' ";
+			}
+			if ($municipio!="") {
+				$qry.="AND Municipio='".$municipio."' ";
+			}
+			if ($estatus!="") {
+				$qry.="AND EstatusVenta='".$estatus."' ";
+			}
+			if ($tipo != "") {
+				$qry.="AND idTipo='".$tipo."' ";
+			}
+			if ($recamaras!="") {
+				$qry.="AND NumeroCuartos='".$recamaras."' ";
+			}
+			if ($banos!="") {
+				$qry.="AND NumeroBanios='".$banos."' ";
+			}
+			if ($preciomin!="") {
+				if ($tipo == "Venta") {
+					$qry.="AND PrecioVenta >='".$preciomin."' ";
+				}elseif ($tipo == "Renta") {
+					$qry.="AND PrecioRenta >='".$preciomin."' ";
+				}elseif ($tipo == "Venta-Renta") {
+					$qry.="AND PrecioRenta >='".$preciomin."' AND PrecioVenta >='".$preciomin."' ";
+				}elseif ($tipo == "Traspaso") {
+					$qry.="AND PrecioVenta >='".$preciomin."' ";
+				}		
+			}
+			if ($preciomax!="") {
+				if ($tipo == "Venta") {
+					$qry.="AND PrecioVenta <= '".$preciomax."' ";
+				}elseif ($tipo == "Renta") {
+					$qry.="AND PrecioRenta <= '".$preciomax."' ";
+				}elseif ($tipo == "Venta-Renta") {
+					$qry.="AND PrecioRenta <='".$preciomax."' AND PrecioVenta <='".$preciomax."' ";
+				}elseif ($tipo == "Traspaso") {
+					$qry.="AND PrecioVenta <='".$preciomax."' ";
+				}	
+			}
+			echo $qry;
+			$result=$this->conexion->query($qry);
+			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
+				if ($res[PrecioVenta]!=0) {
+                    	$precio= $res[PrecioVenta];
+                    } else {
+                    	$precio= $res[PrecioRenta];
+                    } 
+				
+				$str.='<div class="property_wrapper boxes clearfix">
+							<div class="ImageWrapper boxes_img">
+								<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg" alt="">
+								<div class="ImageOverlayH"></div>
+								<div class="Buttons StyleMg">
+									<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>
+									<span class="WhiteSquare"><a href="single-property.php?id='.$res[idPropiedad].'"><i class="fa fa-link"></i></a></span>
+								</div><!-- end Buttons -->
+								<div class="box_type">$ '.$precio.'</div>
+								<div class="status_type">'.$res[EstatusVenta].'</div>
+							</div><!-- ImageWrapper -->
+                            
+							<!--<div class="title clearfix">
+                            	<span class="agent_img pull-right"><a data-placement="bottom" data-toggle="tooltip" data-original-title="Mark ANTHONY" title="" href="single-agent.html"><img width="75" class="img-responsive img-thumbnail" src="demos/03_team.png" alt=""></a></span>
+                            	<h3><a href="single-property.html"> A Family Home for all your needs</a> 
+                                <small class="small_title">890 Istanbul / Maslak</small>
+                                </h3>
+							</div>--><!-- end title -->
+
+							<div class="boxed_mini_details1 clearfix">
+								<span class="type first"><strong>Tipo</strong><a href="#">'.$res[idTipo].'</a></span>
+								<span class="sqft"><strong>M2T</strong><i class="icon-sqft"></i> '.$res[M2terreno].'</span>
+								<span class="garage"><strong>Garage</strong><i class="icon-garage"></i> '.$res[NumeroCocherasDescubiertas].'</span>
+								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> '.$res[NumeroCuartos].'</span>
+								<span class="status"><strong>Baños</strong><i class="icon-bath"></i> '.$res[NumeroBanios].'</span>
+								<!--<span class="furnished"><strong>Furnish</strong><i class="icon-furnished"></i> Yes</span>
+								<span class="pool last"><strong>Pool</strong><i class="icon-pool"></i> Yes</span>-->
+							</div><!-- end boxed_mini_details1 -->
+                            
+                            <div class="property_desc clearfix">
+                            	<p>'.$res[Descripcion].'</p>
+                                <a class="btn btn-primary btn-xs" href="single-property.php?id='.$res[idPropiedad].'" title="">Leer más</a>
+                            </div>
+                        </div><!-- end property_wrapper -->';
+			}
+			return $str;
+
+		}
        	
 	}
 
