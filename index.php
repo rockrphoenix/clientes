@@ -141,7 +141,8 @@
         	<div class="container">
 				<div class="row">
                 	<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 first clearfix">
-                    	<div class="widget cats_widget clearfix">
+                    	
+                        <div class="widget cats_widget clearfix">
 							<div class="title"><h3><i class="icon-sale"></i> Venta</h3></div>
                 			<ul class="real-estate-cats-widget" data-effect="slide-left">
                                 <li>Residencial
@@ -199,9 +200,9 @@
                 	<div class="col-lg-7 col-md-9 col-sm-9 col-xs-12 clearfix">
                         <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom"> 
                           <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab" data-toggle="tab">Residencial</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Terreno</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Servicios</a></li>
+                            <li class="active"><a href="#tab" data-toggle="tab">Propiedades</a></li>
+                            <!--<li><a href="#tab2" data-toggle="tab">Terreno</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Servicios</a></li>-->
                           </ul>
                           <div class="tab-content tabbed_widget clearfix">
                             <div class="tab-pane active" id="tab">
@@ -235,6 +236,21 @@
                                                                         </div>'; }?>
                      </div><!-- end of agents_widget -->
                     </div><!-- end of widget -->
+                    <div class="widget clearfix">
+                            <div class="title"><h3>Secciones</h3></div>
+                            <ul class="list">
+                            <?php 
+                             echo $str;   
+
+                             ?>
+                                <!--<li><a title="" href="#">Support</a></li>
+                                <li><a title="" href="#">Get in touch</a></li>
+                                <li><a title="" href="#">About us</a></li>
+                                <li><a title="" href="#">Terms of use</a></li>
+                                <li><a title="" href="#">Copyrights</a></li>
+                                <li><a title="" href="#">Join us</a></li>-->
+                            </ul>
+                        </div>
                      <div class="widget text-center clearfix"></div>
                      </div>
 
@@ -365,7 +381,7 @@
            <!--</div>--><!-- container -->
         <!--</footer>--><!-- footer1 -->
         
-   <?php require_once("includes/footer.php") ?>    
+   <?php require_once("includes/footer.php"); ?>    
         
     
 	<!-- Bootstrap core and JavaScript's

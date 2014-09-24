@@ -7,8 +7,14 @@
     $prop2=$muestra->propDestUp();
     $prop3=$muestra->todasProp();
     $red = $muestra->redes();
-    
     $redes = $red->fetch_array(MYSQL_ASSOC);
+    $secc=$muestra->seccion();
+   
+    while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
+        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+
+    }
+
     $aConf = $muestra->obtenerConfiguracion();
 
  ?>
@@ -26,7 +32,7 @@
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
 
 	<!-- Style CSS -->
-	<link href="style.css" rel="stylesheet">
+	<link href="style.php" rel="stylesheet">
     
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -48,6 +54,7 @@
      <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/combos.js"></script>
     <!-- Termina combos dependientes-->
+    
   
     
 
@@ -165,7 +172,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12">
                        <div class="logo-wrapper clearfix">
 							<div class="logo">
-								<a href="index.html" title="Home">
+								<a href="index.php" title="Home">
 									<img src="logotipo/logo.jpg" alt="Estate">
 								</a>
 							</div><!-- /.site-name -->

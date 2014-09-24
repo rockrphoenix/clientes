@@ -50,6 +50,12 @@
 			
 			$secc->free();
 		}
+		function seccion2(){
+			$secc2=$this->conexion->query("SELECT * FROM tblseccion WHERE idcliente='$this->id'AND estatus ='1' AND idseccion='$_GET[idsecc]'")or die("No puedo conectarme a asesores");
+			return $secc2;
+			
+			$secc2->free();
+		}
 		function datosFacturacion(){
 			$datos=$this->conexion->query("SELECT ubi.idubicacion as idubicacion, Estado, Ciudad, Municipio, Colonia, Calle, NumeroExterior, NumeroInterior,CP, nombrers, rfc, tel, email FROM tblubicacion as ubi INNER JOIN tbldatosfact as datosf on datosf.idubicacion=ubi.idubicacion AND idcliente='$this->idcliente'")or die("no se obtuveiron datos");
 			return $datos;
@@ -85,7 +91,7 @@
 		}
 
 		function PropiedadesDest(){
-			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'")or die("no se obtuveiron datos");
+			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
 			$img=$this->muestraImagenes();
 			//echo $img;
 
@@ -142,9 +148,10 @@
 		}
 
 		function propDestUp(){
-			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'")or die("no se obtuveiron datos");
+			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
 			
 					$cont=0;
+					
 					while ($fila=$prop->fetch_array(MYSQL_ASSOC)) {
 						$residuo=$cont%4;
 						if ($residuo==0) {
@@ -159,35 +166,38 @@
                                             } else {
                                             	$precio= $fila[PrecioRenta];
                                             }  
-			if ($fila[Destaque]==1) {
-							$rejillaUp.=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <div class="'.$box.'" >
-                                        <div class="ImageWrapper boxes_img">
-                                            <img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-                                            <div class="ImageOverlayH"></div>
-                                            <div class="Buttons StyleSc">
-                                                <span class="WhiteSquare"><a class="fancybox" href=""><i class="fa fa-search"></i></a>
-                                                </span>
-                                                <!--<span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
-                                                </span>-->
-                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
-                                                </span>
-                                            </div>
-                                            <div class="box_type">$'.$precio.'</div>
-                                            <div class="status_type">'.$fila[EstatusVenta].'</div>
-                                        </div>
-                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.$fila[titulo].'</a> <small class="small_title">'.$fila[CP].', '.$fila[Colonia].', '.$fila[Municipio].', '.$fila[Estado].'</small></h2>
-                                       
-                                        <div class="boxed_mini_details1 clearfix">
-                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
-                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
-                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-                                        </div>
-                                    </div><!-- end boxes -->
-                                </div>';
-                                $cont++;
-                            }}
+						if ($fila[Destaque]==1) {
+										$rejillaUp.=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			                                    <div class="'.$box.'" >
+			                                        <div class="ImageWrapper boxes_img">
+			                                            <img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+			                                            <div class="ImageOverlayH"></div>
+			                                            <div class="Buttons StyleSc">
+			                                                <span class="WhiteSquare"><a class="fancybox" href=""><i class="fa fa-search"></i></a>
+			                                                </span>
+			                                                <!--<span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
+			                                                </span>-->
+			                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
+			                                                </span>
+			                                            </div>
+			                                            <div class="box_type">$'.$precio.'</div>
+			                                            <div class="status_type">'.$fila[EstatusVenta].'</div>
+			                                        </div>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.$fila[titulo].'</a> <small class="small_title">'.$fila[CP].', '.$fila[Colonia].', '.$fila[Municipio].', '.$fila[Estado].'</small></h2>
+			                                       
+			                                        <div class="boxed_mini_details1 clearfix">
+			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
+			                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                        </div>
+			                                    </div><!-- end boxes -->
+			                                </div>';
+			                                $cont++;
+			                            }}
+			            if ($cont>=4) {
+			                            	$rejillaUp.="";
+			                            }                
                 return $rejillaUp;
 			
 
@@ -200,58 +210,58 @@
 			if ($tipo!=0) {
 				switch ($tipo) {
 				case '1':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '2':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '3':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '4':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;			
 				case '5':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '6':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '7':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '8':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '9':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Venta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '10':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '11':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '12':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '13':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;			
 				case '14':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '15':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '16':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '17':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				case '18':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Renta'||'VentaRenta'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
 					break;
 				/*case '19':
 					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa'||idTipo='Condominio' ||idTipo='Departamento'")or die("no se obtuveiron datos");
@@ -269,7 +279,7 @@
 					
 					break;}
 			}else {
-				$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'")or die("no se obtuveiron datos");
+				$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
 			}
 			
 			
@@ -316,7 +326,7 @@
 		}
 
 		function Estados(){
-       		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id'");
+       		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'");
        		if ($lista->num_rows>0) {
        			while ($row=$lista->fetch_array(MYSQL_ASSOC)) {
        				$dato.='<option value="'.utf8_encode($row[Estado]).'">'.utf8_encode($row[Estado]).'</option>';
@@ -336,9 +346,9 @@
 			$preciomax=$this->conexion->real_escape_string($_POST['preciomax']);
 			
 
-			$qry= "SELECT * FROM consultapropiedad2 WHERE ";
+			$qry= "SELECT * FROM consultapropiedad2 WHERE publicacion='1' ";
 			if ($estado!= "") {
-				$qry.="Estado='".$estado."' ";
+				$qry.="AND Estado='".$estado."' ";
 			}
 			if ($municipio!="") {
 				$qry.="AND Municipio='".$municipio."' ";
@@ -356,28 +366,34 @@
 				$qry.="AND NumeroBanios='".$banos."' ";
 			}
 			if ($preciomin!="") {
-				if ($tipo == "Venta") {
+				if ($estatus == "Venta") {
 					$qry.="AND PrecioVenta >='".$preciomin."' ";
-				}elseif ($tipo == "Renta") {
+				}
+				if ($estatus == "Renta") {
 					$qry.="AND PrecioRenta >='".$preciomin."' ";
-				}elseif ($tipo == "Venta-Renta") {
+				}
+				if ($estatus == "Venta-Renta") {
 					$qry.="AND PrecioRenta >='".$preciomin."' AND PrecioVenta >='".$preciomin."' ";
-				}elseif ($tipo == "Traspaso") {
+				}
+				if ($estatus == "Traspaso") {
 					$qry.="AND PrecioVenta >='".$preciomin."' ";
 				}		
 			}
 			if ($preciomax!="") {
-				if ($tipo == "Venta") {
+				if ($estatus == "Venta") {
 					$qry.="AND PrecioVenta <= '".$preciomax."' ";
-				}elseif ($tipo == "Renta") {
+				}
+				if ($estatus == "Renta") {
 					$qry.="AND PrecioRenta <= '".$preciomax."' ";
-				}elseif ($tipo == "Venta-Renta") {
+				}
+				if ($estatus == "Venta-Renta") {
 					$qry.="AND PrecioRenta <='".$preciomax."' AND PrecioVenta <='".$preciomax."' ";
-				}elseif ($tipo == "Traspaso") {
+				}
+				if ($estatus == "Traspaso") {
 					$qry.="AND PrecioVenta <='".$preciomax."' ";
 				}	
 			}
-			echo $qry;
+			//echo $qry;
 			$result=$this->conexion->query($qry);
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
 				if ($res[PrecioVenta]!=0) {
@@ -406,7 +422,7 @@
 							</div>--><!-- end title -->
 
 							<div class="boxed_mini_details1 clearfix">
-								<span class="type first"><strong>Tipo</strong><a href="#">'.$res[idTipo].'</a></span>
+								<span class="type first"><strong>Tipo</strong><a href="single-property.php?id='.$res[idPropiedad].'">'.$res[idTipo].'</a></span>
 								<span class="sqft"><strong>M2T</strong><i class="icon-sqft"></i> '.$res[M2terreno].'</span>
 								<span class="garage"><strong>Garage</strong><i class="icon-garage"></i> '.$res[NumeroCocherasDescubiertas].'</span>
 								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> '.$res[NumeroCuartos].'</span>
@@ -431,7 +447,7 @@
 class SliderPrincipal extends Conexion
     {
         public function slider(){
-            $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque=1")or die("Falló query del slider");
+            $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND publicacion='1'")or die("Falló query del slider");
             while ($slide = $sliders->fetch_array(MYSQL_ASSOC)){
             	if ($slide[PrecioVenta]!=0) {
 	                                            	$precio= $slide[PrecioVenta];
@@ -472,7 +488,7 @@ class SliderPrincipal extends Conexion
     	}
     	function PropXId(){
 
-    		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idPropiedad='$_GET[id]'")or die("no se obtuveiron datos");
+    		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idPropiedad='$_GET[id]' AND publicacion='1'")or die("no se obtuveiron datos");
     		
     		return $prop;
     		
