@@ -56,12 +56,12 @@
 			
 			$secc2->free();
 		}
-		function datosFacturacion(){
+		/*function datosFacturacion(){
 			$datos=$this->conexion->query("SELECT ubi.idubicacion as idubicacion, Estado, Ciudad, Municipio, Colonia, Calle, NumeroExterior, NumeroInterior,CP, nombrers, rfc, tel, email FROM tblubicacion as ubi INNER JOIN tbldatosfact as datosf on datosf.idubicacion=ubi.idubicacion AND idcliente='$this->idcliente'")or die("no se obtuveiron datos");
 			return $datos;
 			
 			$datos->free();
-		}
+		}*/
 
 		function muestraImagenes(){
 			
@@ -499,8 +499,8 @@ class SliderPrincipal extends Conexion
    
 //codigo crear vista propiedades	
 /*CREATE ALGORITHM = UNDEFINED VIEW `consultaPropiedad2` (idPropiedad,idcliente,titulo, idPersonalizado,idTipo,Descripcion, PrecioVenta, PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP) 
-												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion */
+												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion AND prop.Estatus='1'*/
 //crear vista consulta cliente
-/*CREATE ALGORITHM = UNDEFINED VIEW `consultaCliente` (idCliente,Email,Tel,Cel,facebook,twitter) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
+/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-    class Conexion
+    /*class Conexion
     {
         protected $conexion;
         protected $id;
@@ -18,10 +18,10 @@
             $arrayInmo = $inmo->fetch_array(MYSQL_ASSOC);
             $this->inmobiliaria = $arrayInmo[idinmobiliaria]; //ponga aquí aquí el id de inmobiliaria
         }
-    }
+    }*/
  
 
-	/*class Conexion
+	class Conexion
 	{
 		protected $conexion;
 		protected $id;
@@ -33,5 +33,5 @@
 			$this->id = 27; //ponga aquí el id de cliente
 			$this->inmobiliaria = 23;  //ponga aquí aquí el id de inmobiliaria
 		}
-	}*/
+	}
 ?>
