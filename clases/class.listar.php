@@ -16,8 +16,20 @@
 			parent::__construct();
 			//$key=$this->conexion->real_escape_string($_POST);
 		}
+		function inmobiliaria(){
+            //echo $this->id;
+            $qry="SELECT idInmobiliaria FROM tblinmobiliaria WHERE idcliente = '$this->id'";
+            //echo $qry;
+            $inmo = $this->conexion->query($qry)or die("No puedo asignar la inmobiliaria");
+            
+            $arrayInmo = $inmo->fetch_array(MYSQL_ASSOC);
+            $this->inmobiliaria = $arrayInmo[idInmobiliaria]; //ponga aquí aquí el id de inmobiliaria
+            return $this->inmobiliaria;
+        }
 		function obtenerConfiguracion(){
-			$conf = $this->conexion->query("SELECT ColorFondo, ColorPrincipal, facebook, twitter FROM tblconfiguracion WHERE idinmobiliaria = '$this->inmobiliaria'")or die("No obtengo la configuración");
+			$idinm=$this->inmobiliaria();
+			//echo $idinm;
+			$conf = $this->conexion->query("SELECT ColorFondo, ColorPrincipal, facebook, twitter FROM tblconfiguracion WHERE idInmobiliaria = '$idinm'")or die("No obtengo la configuración");
 			if ($conf->num_rows == 0) {
 				return false;
 			} else {
@@ -66,7 +78,8 @@
 		function muestraImagenes(){
 			
 			
-					$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
+					//$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
+					$dir = "http://imagenes.yetinmobiliario.com/".$this->id."/".$_GET[id]."";
 					//var_dump($dir);
 					if ($gestor = opendir($dir)) {
 						$cont = 1;
@@ -116,7 +129,9 @@
 							$rejilla .=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="'.$box.'" data-effect="slide-bottom">
                                         <div class="ImageWrapper boxes_img">
-                                            <img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+                                            <img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+                                            
                                             <div class="ImageOverlayH"></div>
                                             <div class="Buttons StyleSc">
                                                 <span class="WhiteSquare"><a class="fancybox" href=""><i class="fa fa-search"></i></a>
@@ -170,7 +185,8 @@
 										$rejillaUp.=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			                                    <div class="'.$box.'" >
 			                                        <div class="ImageWrapper boxes_img">
-			                                            <img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+			                                        <img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+			                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
 			                                            <div class="ImageOverlayH"></div>
 			                                            <div class="Buttons StyleSc">
 			                                                <span class="WhiteSquare"><a class="fancybox" href=""><i class="fa fa-search"></i></a>
@@ -304,7 +320,8 @@
 	                                    <div class="'.$boxes.'">
 	                                        <div class="boxes_img ImageWrapper">
 												<a href="single-property.php">
-													<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+												<img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+													<!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
 													<div class="PStyleNe"></div>
 												</a>
 	                                            <div class="box_type">$'.$precio.'</div>
@@ -404,10 +421,12 @@
 				
 				$str.='<div class="property_wrapper boxes clearfix">
 							<div class="ImageWrapper boxes_img">
-								<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg" alt="">
+								<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg">
+								<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg" alt="">-->
 								<div class="ImageOverlayH"></div>
 								<div class="Buttons StyleMg">
-									<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>
+									<span class="WhiteSquare"><a class="fancybox" href="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>
+									<!--<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>-->
 									<span class="WhiteSquare"><a href="single-property.php?id='.$res[idPropiedad].'"><i class="fa fa-link"></i></a></span>
 								</div><!-- end Buttons -->
 								<div class="box_type">$ '.$precio.'</div>
@@ -465,7 +484,8 @@ class SliderPrincipal extends Conexion
                                 <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.$slide[EstatusVenta].'</a>
                             </div>
                         </div>
-                        <a href="#"><img src="../../imagenes_cy/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>
+                        <a href="#"><img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>
+                        <!--<a href="#"><img src="../../imagenes_cy/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>-->
                     </li>
                 ';
             }

@@ -2,6 +2,7 @@
 require_once("clases/class.listar.php");
 $muestra = new Listados();
 $aConf = $muestra->obtenerConfiguracion();
+//var_dump($aConf);
 header("content-type:text/css");
 ?>
 /*	################################################################
