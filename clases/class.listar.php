@@ -129,7 +129,7 @@
 							$rejilla .=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="'.$box.'" data-effect="slide-bottom">
                                         <div class="ImageWrapper boxes_img">
-                                            <img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+                                            <img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
                                             <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
                                             
                                             <div class="ImageOverlayH"></div>
@@ -317,11 +317,11 @@
                                             }  
             			
             			$comunes .='<div class="col-lg-4 col-md-4 col-sm-4">
-	                                    <div class="'.$boxes.'">
+	                                    <div class="'.$box.'">
 	                                        <div class="boxes_img ImageWrapper">
 												<a href="single-property.php">
-												<img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-													<!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+												<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+													<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
 													<div class="PStyleNe"></div>
 												</a>
 	                                            <div class="box_type">$'.$precio.'</div>
@@ -363,54 +363,90 @@
 			$preciomax=$this->conexion->real_escape_string($_POST['preciomax']);
 			
 
-			$qry= "SELECT * FROM consultapropiedad2 WHERE publicacion='1' ";
-			if ($estado!= "") {
+			$qry= "SELECT * FROM consultapropiedad2 WHERE publicacion='1' AND idcliente='$this->id' ";
+			if ($estado!= "seleccione") {
 				$qry.="AND Estado='".$estado."' ";
+			}else{
+				$qry.="";
 			}
-			if ($municipio!="") {
+			if ($municipio!="seleccione") {
 				$qry.="AND Municipio='".$municipio."' ";
+			}else{
+				$qry.="";
 			}
-			if ($estatus!="") {
+			if ($estatus!="seleccione") {
 				$qry.="AND EstatusVenta='".$estatus."' ";
+			}else{
+				$qry.="";
 			}
-			if ($tipo != "") {
+			if ($tipo != "seleccione") {
 				$qry.="AND idTipo='".$tipo."' ";
+			}else{
+				$qry.="";
 			}
-			if ($recamaras!="") {
+			if ($recamaras!="seleccione") {
 				$qry.="AND NumeroCuartos='".$recamaras."' ";
+			}else{
+				$qry.="";
 			}
-			if ($banos!="") {
+			if ($banos!="seleccione") {
 				$qry.="AND NumeroBanios='".$banos."' ";
+			}else{
+				$qry.="";
 			}
-			if ($preciomin!="") {
+			if ($preciomin!="seleccione") {
 				if ($estatus == "Venta") {
 					$qry.="AND PrecioVenta >='".$preciomin."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Renta") {
 					$qry.="AND PrecioRenta >='".$preciomin."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Venta-Renta") {
 					$qry.="AND PrecioRenta >='".$preciomin."' AND PrecioVenta >='".$preciomin."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Traspaso") {
 					$qry.="AND PrecioVenta >='".$preciomin."' ";
-				}		
+				}else{
+				$qry.="";
+				}
+				if ($estatus == "seleccione") {
+					$qry.="AND (PrecioVenta >='".$preciomin."' AND PrecioVenta <='".$preciomax."') ";
+				}else{
+				$qry.="";
+				}
+				
+
 			}
-			if ($preciomax!="") {
+			if ($preciomax!="seleccione") {
 				if ($estatus == "Venta") {
 					$qry.="AND PrecioVenta <= '".$preciomax."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Renta") {
 					$qry.="AND PrecioRenta <= '".$preciomax."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Venta-Renta") {
 					$qry.="AND PrecioRenta <='".$preciomax."' AND PrecioVenta <='".$preciomax."' ";
+				}else{
+				$qry.="";
 				}
 				if ($estatus == "Traspaso") {
 					$qry.="AND PrecioVenta <='".$preciomax."' ";
-				}	
+				}else{
+				$qry.="";
+				}
+				
 			}
-			//echo $qry;
+			echo $qry;
 			$result=$this->conexion->query($qry);
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
 				if ($res[PrecioVenta]!=0) {

@@ -1,4 +1,21 @@
+<?php
+    require_once("clases/class.listar.php");
+    
+    $muestra = new Listados($_POST);
+    $prop=$muestra->PropiedadesDest();
+    $prop2=$muestra->propDestUp();
+    $prop3=$muestra->todasProp();
+    $red = $muestra->redes();
+    
+    $redes = $red->fetch_array(MYSQL_ASSOC);
+    $secc=$muestra->seccion();
+   
+    while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
+        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
 
+    }
+    $aConf = $muestra->obtenerConfiguracion();
+?>
 
 		
 <!DOCTYPE html>
@@ -15,7 +32,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.php" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
@@ -38,6 +55,8 @@
      <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/combos.js"></script>
     <!-- Termina combos dependientes-->
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script> <!-- form validation -->
+    <script src="js/validaContacto.js" type="text/javascript"></script> <!-- form validation --> 
     
   
     
@@ -176,8 +195,7 @@
 
         <?php require_once("includes/nav.php") ?>  
 
-<script src="js/jquery.validate.min.js" type="text/javascript"></script> <!-- form validation -->
-<script src="js/validaContacto.js" type="text/javascript"></script> <!-- form validation -->     
+    
         <section class="generalwrapper dm-shadow clearfix">
         	<div class="container">
 				<div class="row">

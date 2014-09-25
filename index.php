@@ -32,7 +32,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.php" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
@@ -377,9 +377,9 @@
                 	<div class="col-lg-7 col-md-9 col-sm-9 col-xs-12 clearfix">
                         <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom"> 
                           <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab" data-toggle="tab">Propiedades</a></li>
-                            <!--<li><a href="#tab2" data-toggle="tab">Terreno</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Servicios</a></li>-->
+                            <li class="active"><a href="#tab" data-toggle="tab">Residencial</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Terreno</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Servicios</a></li>
                           </ul>
                           <div class="tab-content tabbed_widget clearfix">
                             <div class="tab-pane active" id="tab">

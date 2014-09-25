@@ -5,7 +5,9 @@
 	if (isset($_POST[elegido])) {
 		$listar = new Datos($_POST);
 		$municipios = $listar->combosCodigoA();
+		
 		echo $municipios;
+		//var_dump($municipios);
 		
 	} elseif (isset($_POST[mpo])) {
 		$listar2 = new Datos($_POST);

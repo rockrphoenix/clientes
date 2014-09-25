@@ -2,7 +2,20 @@
 require_once("clases/class.listar.php");
 $ava=new Listados($_POST);
 $bus=$ava->busquedAvanzada();
-        
+ $muestra = new Listados($_POST);
+    $prop=$muestra->PropiedadesDest();
+    $prop2=$muestra->propDestUp();
+    $prop3=$muestra->todasProp();
+    $red = $muestra->redes();
+    
+    $redes = $red->fetch_array(MYSQL_ASSOC);
+    $secc=$muestra->seccion();
+   
+    while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
+        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+
+    }
+    $aConf = $muestra->obtenerConfiguracion();       
  ?>
 
 <!DOCTYPE html>
@@ -19,7 +32,7 @@ $bus=$ava->busquedAvanzada();
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.php" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->

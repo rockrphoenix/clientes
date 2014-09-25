@@ -34,7 +34,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.php" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
