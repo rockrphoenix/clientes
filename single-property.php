@@ -63,6 +63,11 @@
      <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/combos.js"></script>
     <!-- Termina combos dependientes-->
+     <!--sharethis redes sociales-->
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "74513d12-9867-44a0-8b7e-5d3a997dd663", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+    <!-- termina sharethis redes sociales-->
     
   
     
@@ -167,8 +172,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="callus">
                             <p>
-                            <span><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></span>
-                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></span>
+                            <span><i class="fa fa-envelope"></i> <?php echo $redes['correocontacto']?></span>
+                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['telprinc'] ?></span>
                             </p>
                         </div><!-- end callus-->
                     </div><!-- end col-lg-6 -->
@@ -192,8 +197,8 @@
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                         
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
@@ -316,9 +321,18 @@
 							<div class="title clearfix">
                             	<!--<span class="agent_img pull-right"><a data-placement="bottom" data-toggle="tooltip" data-original-title="Mark ANTHONY" title="" href="single-agent.html"><img width="75" class="img-responsive img-thumbnail" src="demos/03_team.png" alt=""></a></span>-->
                             	<h3><?php echo utf8_encode($unica[titulo]); ?>
-                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode($unica[Colonia]).", ".utf8_encode($unica[Municipio]).", ".utf8_encode($unica[Estado]); ?> <mark>$<?php echo $precio; ?></mark></small>
+                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark>$<?php echo $precio; ?></mark></small>
                                 </h3>
 							</div><!-- end title -->
+                            <div class="title clearfix">
+                                
+                                            <span class="st_facebook" displayText="Facebook"></span>
+                                            <!--<span class="st_fbsub" displayText="Facebook Subscribe" st_username="sharethis"></span>-->
+                                            <span class="st_twitter" displayText="Tweet"></span>
+                                            <!--<span class="t_twitterfollow"displayText="witter Follow" st_username="sharethis"></span>-->
+                                            <span class="st_email" displayText="Email"></span>
+                                        
+                            </div>
 
 							<div class="boxed_mini_details1 clearfix">
 								<span class="type first"><strong>Tipo</strong><a href="agencies.html"><?php echo utf8_encode($unica[idTipo]); ?></a></span>
@@ -332,9 +346,9 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                                <p><strong><?php echo utf8_encode($unica[Descripcion]); ?></strong></p>
-                                <p><strong>Clave personalizada: <?php echo utf8_encode($unica[idPersonalizado]); ?></strong></p>
-                                 <p><strong>Estatus: <?php echo utf8_encode($unica[EstatusVenta]); ?></strong></p>
+                                <p><strong><?php echo utf8_encode(utf8_decode($unica[Descripcion])); ?></strong></p>
+                                <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica[idPersonalizado])); ?></strong></p>
+                                 <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica[EstatusVenta])); ?></strong></p>
 
                                 <?php switch ($unica[idTipo]) {
                                     case 'Casa':

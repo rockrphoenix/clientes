@@ -161,8 +161,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="callus">
                             <p>
-                            <span><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></span>
-                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></span>
+                            <span><i class="fa fa-envelope"></i> <?php echo $redes['correocontacto']?></span>
+                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['telprinc'] ?></span>
                             </p>
                         </div><!-- end callus-->
                     </div><!-- end col-lg-6 -->
@@ -186,8 +186,8 @@
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                         
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
@@ -241,9 +241,9 @@
                                 <div class="servicetitle"><h3>Detalles de contacto</h3></div>
                                 <ul>
                                     <!--<li><i class="fa fa-external-link"></i> www.yoursite.com</li>-->
-                                    <li><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></li>
-                            		<li><i class="fa fa-phone-square"></i> <?php echo $redes['Tel'] ?></li>
-                            		<li><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></li>
+                                    <li><i class="fa fa-envelope"></i> <?php echo $redes['correocontacto']?></li>
+                            		<li><i class="fa fa-phone-square"></i> <?php echo $redes['telprinc'] ?></li>
+                            		<li><i class="fa fa-phone-square"></i> <?php echo $redes['telsec'] ?></li>
                                 </ul>
                             </div>
                             
@@ -254,6 +254,7 @@
                                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Teléfono">
                                     <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto"> 
                                     <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Escriba su mensaje…"></textarea>
+                                    <input type="hidden" name="correocontacto" <?php echo "value='".$redes[correocontacto]."'"; ?>>
                                     <input type="hidden" name="action" value="contactUser">
                                     <input type="submit" class="btn btn-primary" value="ENVIAR">
                                 </form>

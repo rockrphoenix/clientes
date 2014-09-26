@@ -3,6 +3,7 @@ require_once('../clases/class.phpmailer.php');
 require_once('../clases/class.smtp.php');
 
 $action = $_POST['action'];
+$correocontacto=$_POST['correocontacto'];
 switch ($action) {
 	case 'contactUser':
 			$mail = new PHPMailer();
@@ -15,7 +16,7 @@ switch ($action) {
 			    $mail->Password = "4lt4Yet!";
 			    $mail->From = "setup@yetinmobiliario.com";
 			    $mail->FromName = "Yet Inmobiliario";
-			    $mail->AddAddress('soporte@gruposyse.com');
+			    $mail->AddAddress($correocontacto);
 			    $mail->IsHTML(true);
 			    $mail->SMTPDebug = 0;
 			    $mail->Subject = "Contacto";

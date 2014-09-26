@@ -55,7 +55,8 @@
      <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/combos.js"></script>
     <!-- Termina combos dependientes-->
-    
+
+        
   
     
 
@@ -159,8 +160,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="callus">
                             <p>
-                            <span><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></span>
-                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></span>
+                            <span><i class="fa fa-envelope"></i> <?php echo $redes['correocontacto']?></span>
+                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['telprinc'] ?></span>
                             </p>
                         </div><!-- end callus-->
                     </div><!-- end col-lg-6 -->
@@ -184,8 +185,8 @@
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                         
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title=""  target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title=""  target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
@@ -356,7 +357,7 @@
                                         <li><a href="index.php?t=12">Departamento</a></li>
                                     </ul>
                                 </li>
-                                <li>Servicios
+                                <li>Comercial
                                     <ul>
                                         <li><a href="index.php?t=13">Edificio</a></li>
                                         <li><a href="index.php?t=14">Local</a></li>
@@ -378,8 +379,8 @@
                         <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom"> 
                           <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab" data-toggle="tab">Residencial</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Terreno</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Servicios</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Comercial</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Terrenos</a></li>
                           </ul>
                           <div class="tab-content tabbed_widget clearfix">
                             <div class="tab-pane active" id="tab">
@@ -466,11 +467,11 @@
                                                 <div class="col-lg-9">
                                                     <div class="agencies_desc">
                                                         <h3 class="title">'.$ofi['nombre'].'</h3>
-                                                        <p>'.$ofi['calle'].' #'.$ofi['numero'].', '.$ofi['no_int'].'<br>
+                                                        <p>'.$ofi['calle'].', #'.$ofi['numero'].', '.$ofi['no_int'].'<br>
                                                         '.$ofi['colonia'].'<br>
                                                         '.$ofi['delegacion'].'<br>
                                                         '.$ofi['estado'].'<br></p>
-                                                        <a href="#" class="btn btn-primary btn-sm">Detalles</a>
+                                                        <!--<a href="#" class="btn btn-primary btn-sm">Detalles</a>-->
                                                         
                                                     </div><!-- agencies_desc -->
                                                 </div>

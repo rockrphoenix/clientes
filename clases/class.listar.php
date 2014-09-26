@@ -118,7 +118,7 @@
 		}
 
 		function PropiedadesDest(){
-			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
+			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND Estatus='1' AND publicacion='1'")or die("no hay rpopiedades destacadas");
 			$img=$this->muestraImagenes();
 			//echo $img;
 
@@ -134,9 +134,9 @@
 							$box="boxes";
 						}
 						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= $fila[PrecioVenta];
+                                            	$precio= number_format($fila[PrecioVenta]);
                                             } else {
-                                            	$precio= $fila[PrecioRenta];
+                                            	$precio= number_format($fila[PrecioRenta]);
                                             }  
 
 						if ($fila[Destaque]==1) {
@@ -156,9 +156,9 @@
                                                 </span>
                                             </div>
                                             <div class="box_type">$'.$precio.'</div>
-                                            <div class="status_type">'.$fila[EstatusVenta].'</div>
+                                            <div class="status_type">'. utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
                                         </div>
-                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.$fila[titulo].'</a> <small class="small_title">'.$fila[CP].', '.$fila[Colonia].', '.$fila[Municipio].', '.$fila[Estado].'</small></h2>
+                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
                                        
                                         <div class="boxed_mini_details1 clearfix">
                                             <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
@@ -166,6 +166,7 @@
                                             <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
                                             <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
                                         </div>
+                                        
                                     </div><!-- end boxes -->
                                 </div>';
                                 $cont++;
@@ -177,7 +178,7 @@
 		}
 
 		function propDestUp(){
-			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
+			$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque ='1' AND Estatus='1' AND publicacion='1'")or die("no hay prodestup");
 			
 					$cont=0;
 					
@@ -191,9 +192,9 @@
 							$box="boxes";
 						}
 						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= $fila[PrecioVenta];
+                                            	$precio= number_format($fila[PrecioVenta]);
                                             } else {
-                                            	$precio= $fila[PrecioRenta];
+                                            	$precio= number_format($fila[PrecioRenta]);
                                             }  
 						if ($fila[Destaque]==1) {
 										$rejillaUp.=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -211,9 +212,9 @@
 			                                                </span>
 			                                            </div>
 			                                            <div class="box_type">$'.$precio.'</div>
-			                                            <div class="status_type">'.$fila[EstatusVenta].'</div>
+			                                            <div class="status_type">'.utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.$fila[titulo].'</a> <small class="small_title">'.$fila[CP].', '.$fila[Colonia].', '.$fila[Municipio].', '.$fila[Estado].'</small></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
 			                                       
 			                                        <div class="boxed_mini_details1 clearfix">
 			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
@@ -240,67 +241,67 @@
 			if ($tipo!=0) {
 				switch ($tipo) {
 				case '1':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case1");
 					break;
 				case '2':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case2");
 					break;
 				case '3':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case3");
 					break;
 				case '4':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case4");
 					break;			
 				case '5':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case5");
 					break;
 				case '6':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case6");
 					break;
 				case '7':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case7");
 					break;
 				case '8':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case8");
 					break;
 				case '9':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Venta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case9");
 					break;
 				case '10':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case10");
 					break;
 				case '11':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case11");
 					break;
 				case '12':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case12");
 					break;
 				case '13':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case13");
 					break;			
 				case '14':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case14");
 					break;
 				case '15':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case15");
 					break;
 				case '16':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case16");
 					break;
 				case '17':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case17");
 					break;
 				case '18':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Renta'||'VentaRenta' AND publicacion='1'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case18");
 					break;
 				/*case '19':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa'||idTipo='Condominio' ||idTipo='Departamento'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa'||idTipo='Condominio' ||idTipo='Departamento'")or die("no case");
 					break;
 				case '20':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'||idTipo='Local' ||idTipo='Oficina'||idTipo='Bodega' ")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'||idTipo='Local' ||idTipo='Oficina'||idTipo='Bodega' ")or die("no case");
 					break;
 				case '21':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'||idTipo='Rancho'")or die("no se obtuveiron datos");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'||idTipo='Rancho'")or die("no case");
 					break;	*/							
 				default:
 					if ($prop==0) {
@@ -309,7 +310,7 @@
 					
 					break;}
 			}else {
-				$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'")or die("no se obtuveiron datos");
+				$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Estatus='1' AND publicacion='1'")or die("no case");
 			}
 			
 			
@@ -325,9 +326,9 @@
 							$box="boxes";
 						}
 						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= $fila[PrecioVenta];
+                                            	$precio= number_format($fila[PrecioVenta]);
                                             } else {
-                                            	$precio= $fila[PrecioRenta];
+                                            	$precio= number_format($fila[PrecioRenta]);
                                             }  
             			
             			$comunes .='<div class="col-lg-4 col-md-4 col-sm-4">
@@ -340,7 +341,7 @@
 												</a>
 	                                            <div class="box_type">$'.$precio.'</div>
 	                                        </div>
-	                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.$fila[titulo].'</a></h2>
+	                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a></h2>
 	                                        <div class="boxed_mini_details clearfix">
 	                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
 	                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
@@ -357,7 +358,7 @@
 		}
 
 		function Estados(){
-       		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id' AND publicacion='1'");
+       		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id' AND Estatus='1' AND publicacion='1'")or die("no estados");
        		if ($lista->num_rows>0) {
        			while ($row=$lista->fetch_array(MYSQL_ASSOC)) {
        				$dato.='<option value="'.utf8_encode($row[Estado]).'">'.utf8_encode($row[Estado]).'</option>';
@@ -377,7 +378,7 @@
 			$preciomax=$this->conexion->real_escape_string($_POST['preciomax']);
 			
 
-			$qry= "SELECT * FROM consultapropiedad2 WHERE publicacion='1' AND idcliente='$this->id' ";
+			$qry= "SELECT * FROM consultapropiedad2 WHERE publicacion='1' AND Estatus='1' AND idcliente='$this->id' ";
 			if ($estado!= "seleccione") {
 				$qry.="AND Estado='".$estado."' ";
 			}else{
@@ -464,10 +465,12 @@
 			$result=$this->conexion->query($qry);
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
 				if ($res[PrecioVenta]!=0) {
-                    	$precio= $res[PrecioVenta];
+                    	$precio= number_format($res[PrecioVenta]);
                     } else {
-                    	$precio= $res[PrecioRenta];
+                    	$precio= number_format($res[PrecioRenta]);
                     } 
+
+                   
 				
 				$str.='<div class="property_wrapper boxes clearfix">
 							<div class="ImageWrapper boxes_img">
@@ -480,7 +483,7 @@
 									<span class="WhiteSquare"><a href="single-property.php?id='.$res[idPropiedad].'"><i class="fa fa-link"></i></a></span>
 								</div><!-- end Buttons -->
 								<div class="box_type">$ '.$precio.'</div>
-								<div class="status_type">'.$res[EstatusVenta].'</div>
+								<div class="status_type">'.utf8_encode(utf8_decode($res[EstatusVenta])).'</div>
 							</div><!-- ImageWrapper -->
                             
 							<!--<div class="title clearfix">
@@ -501,7 +504,7 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                            	<p>'.$res[Descripcion].'</p>
+                            	<p>'.utf8_encode(utf8_decode(substr($res[Descripcion], 0,140))).'</p>
                                 <a class="btn btn-primary btn-xs" href="single-property.php?id='.$res[idPropiedad].'" title="">Leer más</a>
                             </div>
                         </div><!-- end property_wrapper -->';
@@ -516,22 +519,23 @@
 class SliderPrincipal extends Conexion
     {
         public function slider(){
-            $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND publicacion='1'")or die("Falló query del slider");
+            $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND Estatus='1' AND publicacion='1'")or die("Falló query del slider");
             while ($slide = $sliders->fetch_array(MYSQL_ASSOC)){
             	if ($slide[PrecioVenta]!=0) {
-	                                            	$precio= $slide[PrecioVenta];
+	                                            	$precio= number_format($slide[PrecioVenta]);
 	                                            } else {
-	                                            	$precio= $slide[PrecioRenta];
+	                                            	$precio= number_format($slide[PrecioRenta]);
 	                                            }
+               	
                 $grid .= '
                     <li>
                         <div class="desc">
                             <div class="ps-desc">
-                                <h3><a href="single-property.php?id='.$slide[idPropiedad].'">'.$slide[titulo].'</a></h3>
-                                <p>'.$slide[Descripcion].' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
+                                <h3><a href="single-property.php?id='.$slide[idPropiedad].'">'.utf8_encode(utf8_decode($slide[titulo])).'</a></h3>
+                                <p>'.utf8_encode(utf8_decode(substr($slide[Descripcion], 0,140))).' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
                                 <span class="type">Casa</span>
                                 <span class="price">$'.$precio.'</span>
-                                <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.$slide[EstatusVenta].'</a>
+                                <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.utf8_encode(utf8_decode($slide[EstatusVenta])).'</a>
                             </div>
                         </div>
                         <a href="#"><img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>
@@ -558,7 +562,7 @@ class SliderPrincipal extends Conexion
     	}
     	function PropXId(){
 
-    		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idPropiedad='$_GET[id]' AND publicacion='1'")or die("no se obtuveiron datos");
+    		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idPropiedad='$_GET[id]' AND Estatus='1' AND publicacion='1'")or die("no propxid");
     		
     		return $prop;
     		
@@ -568,9 +572,9 @@ class SliderPrincipal extends Conexion
 
    
 //codigo crear vista propiedades	
-/*CREATE ALGORITHM = UNDEFINED VIEW `consultaPropiedad2` (idPropiedad,idcliente,titulo, idPersonalizado,idTipo,Descripcion, PrecioVenta, PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP) 
-												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion AND prop.Estatus='1'*/
+/*CREATE ALGORITHM = UNDEFINED VIEW `consultaPropiedad2` (idPropiedad,idcliente,titulo, idPersonalizado,idTipo,Descripcion, PrecioVenta, PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP) 
+												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion*/
 //crear vista consulta cliente
-/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
+/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter,telprinc,telsec,correocontacto) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter,telprinc,telsec,correocontacto FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
 ?>
 

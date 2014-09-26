@@ -163,8 +163,8 @@ require_once("clases/class.listar.php");
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="callus">
                             <p>
-                            <span><i class="fa fa-envelope"></i> <?php echo $redes['Email']?></span>
-                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['Cel'] ?></span>
+                            <span><i class="fa fa-envelope"></i> <?php echo $redes['correocontacto']?></span>
+                            <span><i class="fa fa-phone-square"></i> <?php echo $redes['telprinc'] ?></span>
                             </p>
                         </div><!-- end callus-->
                     </div><!-- end col-lg-6 -->
@@ -188,8 +188,8 @@ require_once("clases/class.listar.php");
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                         
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
