@@ -8,13 +8,19 @@
     $red = $muestra->redes();
     $redes = $red->fetch_array(MYSQL_ASSOC);
     $slider=$muestra->muestraImagenes();
-    
+    //var_dump($slider);
     $aConf = $muestra->obtenerConfiguracion();
     $unica = $propSelect->fetch_array(MYSQL_ASSOC);
     if ($unica[PrecioVenta]!=0) {
         $precio= $unica[PrecioVenta];
     } else {
         $precio= $unica[PrecioRenta];
+    }
+     $secc=$muestra->seccion();
+   
+    while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
+        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+
     }
        
 

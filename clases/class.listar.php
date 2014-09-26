@@ -78,19 +78,34 @@
 		function muestraImagenes(){
 			
 			
-					//$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
-					$dir = "http://imagenes.yetinmobiliario.com/".$this->id."/".$_GET[id]."";
-					//var_dump($dir);
+					$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
+					//$dir = "http://imagenes.yetinmobiliario.com/".$this->id."/".$_GET[id]."";
+					
+					/*var_dump($dir);
+					$directorio = opendir($dir)or die("no existe"); //ruta actual
+					while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro sucesivamente
+					{
+					    if (is_dir($archivo))//verificamos si es o no un directorio
+					    {
+					        echo "[".$archivo . "]<br />"; //de ser un directorio lo envolvemos entre corchetes
+					    }
+					    else
+					    {
+					        echo $archivo . "<br />";
+					    }
+					}*/
+
+
 					if ($gestor = opendir($dir)) {
 						$cont = 1;
 					    while (false !== ($entrada = readdir($gestor))) {
 					        if ($entrada != "." && $entrada != "..") {
 					        	if ($entrada == "principal.jpg") {
-					        		$str.= '<li><img class="img-thumbnail" src="'.$dir.'/'.$entrada.'" width="200" alt=""></li>';
-					        		//var_dump($str);
+					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[id].'/'.$entrada.'" width="200" alt=""></li>';
+					        		
 					        	}else{
-					        		$str.= '<li><img class="img-thumbnail" src="'.$dir.'/'.$entrada.'" width="200" alt=""></li>';
-					        		//var_dump($str);
+					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[id].'/'.$entrada.'" width="200" alt=""></li>';
+					        		
 					        	}
 					            $cont++;
 					        }
@@ -99,8 +114,7 @@
 					}
 					
 			
-			return $str;
-			
+			return $str;	
 		}
 
 		function PropiedadesDest(){
@@ -446,7 +460,7 @@
 				}
 				
 			}
-			echo $qry;
+			//echo $qry;
 			$result=$this->conexion->query($qry);
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
 				if ($res[PrecioVenta]!=0) {
