@@ -361,7 +361,7 @@
        		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id' AND Estatus='1' AND publicacion='1'")or die("no estados");
        		if ($lista->num_rows>0) {
        			while ($row=$lista->fetch_array(MYSQL_ASSOC)) {
-       				$dato.='<option value="'.utf8_encode($row[Estado]).'">'.utf8_encode($row[Estado]).'</option>';
+       				$dato.='<option value="'.utf8_encode(utf8_decode($row[Estado])).'">'.utf8_encode(utf8_decode($row[Estado])).'</option>';
        			}
        		}
        		return $dato;
@@ -470,7 +470,11 @@
                     	$precio= number_format($res[PrecioRenta]);
                     } 
 
-                   
+                if ($res[idTipo]=="Departamento") {
+                   	$tipe="Depto.";
+                   }else{
+                   	$tipe=$res[idTipo];
+                   }   
 				
 				$str.='<div class="property_wrapper boxes clearfix">
 							<div class="ImageWrapper boxes_img">
@@ -494,7 +498,7 @@
 							</div>--><!-- end title -->
 
 							<div class="boxed_mini_details1 clearfix">
-								<span class="type first"><strong>Tipo</strong><a href="single-property.php?id='.$res[idPropiedad].'">'.$res[idTipo].'</a></span>
+								<span class="type first"><strong>Tipo</strong><a href="single-property.php?id='.$res[idPropiedad].'">'.$tipe.'</a></span>
 								<span class="sqft"><strong>M2T</strong><i class="icon-sqft"></i> '.$res[M2terreno].'</span>
 								<span class="garage"><strong>Garage</strong><i class="icon-garage"></i> '.$res[NumeroCocherasDescubiertas].'</span>
 								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> '.$res[NumeroCuartos].'</span>
@@ -504,7 +508,7 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                            	<p>'.utf8_encode(utf8_decode(substr($res[Descripcion], 0,140))).'</p>
+                            	<p>'.nl2br(utf8_encode(utf8_decode(substr($res[Descripcion], 0,250)))) .'</p>
                                 <a class="btn btn-primary btn-xs" href="single-property.php?id='.$res[idPropiedad].'" title="">Leer más</a>
                             </div>
                         </div><!-- end property_wrapper -->';
@@ -532,7 +536,7 @@ class SliderPrincipal extends Conexion
                         <div class="desc">
                             <div class="ps-desc">
                                 <h3><a href="single-property.php?id='.$slide[idPropiedad].'">'.utf8_encode(utf8_decode($slide[titulo])).'</a></h3>
-                                <p>'.utf8_encode(utf8_decode(substr($slide[Descripcion], 0,140))).' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
+                                <p>'.nl2br(utf8_encode(utf8_decode(substr($slide[Descripcion], 0,140)))) .' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
                                 <span class="type">Casa</span>
                                 <span class="price">$'.$precio.'</span>
                                 <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.utf8_encode(utf8_decode($slide[EstatusVenta])).'</a>

@@ -10,6 +10,13 @@
     $slider=$muestra->muestraImagenes();
     //var_dump($slider);
     $aConf = $muestra->obtenerConfiguracion();
+    $estilos = file_get_contents('style.css');
+    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $nvoEstilo = fopen('prueba.css', 'w+');
+    fwrite($nvoEstilo, $estilos);
+    fclose($nvoEstilo);
+
     $unica = $propSelect->fetch_array(MYSQL_ASSOC);
     if ($unica[PrecioVenta]!=0) {
         $precio= $unica[PrecioVenta];
@@ -40,7 +47,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.css" rel="stylesheet">
+    <link href="prueba.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
@@ -213,9 +220,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <ul class="breadcrumb">
                         <li><a href="index.php">Inicio</a></li>
-                        <li><?php echo utf8_encode($unica[titulo]); ?></li>
+                        <li><?php echo utf8_encode(utf8_decode($unica[titulo])); ?></li>
                     </ul>
-                    <h2><?php echo utf8_encode($unica[titulo]); ?></h2>
+                    <h2><?php echo utf8_encode(utf8_decode($unica[titulo])); ?></h2>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         
@@ -335,7 +342,12 @@
                             </div>
 
 							<div class="boxed_mini_details1 clearfix">
-								<span class="type first"><strong>Tipo</strong><a href="agencies.html"><?php echo utf8_encode($unica[idTipo]); ?></a></span>
+                            <?php if ($unica[idTipo]=="Departamento") {
+                                $tipe="Depto.";
+                            }else{
+                                $tipe=$unica[idTipo];
+                                } ?>
+								<span class="type first"><strong>Tipo</strong><a href="agencies.html"><?php echo utf8_encode($tipe); ?></a></span>
 								<span class="sqft"><strong>C-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2Construccion] ;?></span>
                                 <span class="sqft"><strong>T-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2terreno] ;?></span>
 								<span class="garage"><strong>Cochera</strong><i class="icon-garage"></i> <?php echo $unica[NumeroCocheras] ;?></span>
@@ -346,7 +358,7 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                                <p><strong><?php echo utf8_encode(utf8_decode($unica[Descripcion])); ?></strong></p>
+                                <p><strong><?php echo nl2br(utf8_encode(utf8_decode($unica[Descripcion]))) ; ?></strong></p>
                                 <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica[idPersonalizado])); ?></strong></p>
                                  <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica[EstatusVenta])); ?></strong></p>
 

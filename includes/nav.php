@@ -97,7 +97,7 @@
                                                     <div class="clearfix"></div>
                                                     <hr>
                                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                        <p>Para resultados más rápidos, por favor utilice el formulario de arriba, si desea contactarnos para obtener resultados confidenciales, <a href="contact.html">póngase en contacto </a> con nosotros.</p>  
+                                                        <p>Para resultados más rápidos, por favor utilice el formulario de arriba</p>  
                                                         
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

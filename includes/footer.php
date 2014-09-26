@@ -72,7 +72,7 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-lg-6 col-sm-6 col-md-6">
-                        <p><small>Copyright &copy; 2014 Yet! Inmobiliario. Creado por <a href="http://www.gruposyse.com" target="_blank">Grupo SYSE</a>.</small></p>
+                        <p><small><a href="http://www.yetinmobiliario.com" target="_blank">Yet! Inmobiliario. </a>.</small></p>
                     </div>
                 	<div class="col-lg-6 col-sm-6 col-md-6">
                         <div class="social clearfix pull-right">

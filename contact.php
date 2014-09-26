@@ -15,6 +15,12 @@
 
     }
     $aConf = $muestra->obtenerConfiguracion();
+    $estilos = file_get_contents('style.css');
+    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $nvoEstilo = fopen('prueba.css', 'w+');
+    fwrite($nvoEstilo, $estilos);
+    fclose($nvoEstilo);
 ?>
 
 		
@@ -32,7 +38,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.css" rel="stylesheet">
+    <link href="prueba.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->

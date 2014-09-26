@@ -19,6 +19,12 @@ require_once("clases/class.listar.php");
 
     }
     $aConf = $muestra->obtenerConfiguracion();
+    $estilos = file_get_contents('style.css');
+    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $nvoEstilo = fopen('prueba.css', 'w+');
+    fwrite($nvoEstilo, $estilos);
+    fclose($nvoEstilo);
 
 
  ?>
@@ -36,7 +42,7 @@ require_once("clases/class.listar.php");
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.css" rel="stylesheet">
+    <link href="prueba.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
@@ -336,7 +342,7 @@ require_once("clases/class.listar.php");
 
                     	<div class="widget clearfix">
                         	<div class="agents_widget">
-                            	<div class="title"><h3><i class="fa fa-users"></i> Our Agents</h3></div>
+                            	<div class="title"><h3><i class="fa fa-users"></i> Nuestros agentes</h3></div>
 								<?php 
                                                             $asesores = $muestra->asesores();
                                                                     while ($as = $asesores->fetch_array(MYSQL_ASSOC)) {

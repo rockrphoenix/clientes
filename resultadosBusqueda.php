@@ -15,7 +15,13 @@ $bus=$ava->busquedAvanzada();
         $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
 
     }
-    $aConf = $muestra->obtenerConfiguracion();       
+    $aConf = $muestra->obtenerConfiguracion(); 
+    $estilos = file_get_contents('style.css');
+    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $nvoEstilo = fopen('prueba.css', 'w+');
+    fwrite($nvoEstilo, $estilos);
+    fclose($nvoEstilo);      
  ?>
 
 <!DOCTYPE html>
@@ -32,7 +38,7 @@ $bus=$ava->busquedAvanzada();
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Style CSS -->
-    <link href="style.css" rel="stylesheet">
+    <link href="prueba.css" rel="stylesheet">
     
     
     <!-- Google Fonts -->
