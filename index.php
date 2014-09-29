@@ -473,7 +473,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="agencies_desc">
                                                         <h3 class="title">'.$ofi['nombre'].'</h3>
-                                                        <p>'.$ofi['calle'].', #'.$ofi['numero'].', '.$ofi['no_int'].'<br>
+                                                        <p>'.$ofi['calle'].', '.$ofi['numero'].', '.$ofi['no_int'].'<br>
                                                         '.$ofi['colonia'].'<br>
                                                         '.$ofi['delegacion'].'<br>
                                                         '.$ofi['estado'].'<br></p>

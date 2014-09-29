@@ -155,10 +155,10 @@
                                                 <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
                                                 </span>
                                             </div>
-                                            <div class="box_type">$'.$precio.'</div>
+                                            <div class="box_type">$'.$precio.' M.N.</div>
                                             <div class="status_type">'. utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
                                         </div>
-                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,40))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
                                        
                                         <div class="boxed_mini_details1 clearfix">
                                             <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
@@ -211,10 +211,10 @@
 			                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
 			                                                </span>
 			                                            </div>
-			                                            <div class="box_type">$'.$precio.'</div>
+			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                            <div class="status_type">'.utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,40))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
 			                                       
 			                                        <div class="boxed_mini_details1 clearfix">
 			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
@@ -241,58 +241,58 @@
 			if ($tipo!=0) {
 				switch ($tipo) {
 				case '1':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case1");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case1");
 					break;
 				case '2':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case2");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case2");
 					break;
 				case '3':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case3");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case3");
 					break;
 				case '4':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case4");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case4");
 					break;			
 				case '5':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case5");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case5");
 					break;
 				case '6':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case6");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case6");
 					break;
 				case '7':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case7");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case7");
 					break;
 				case '8':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case8");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case8");
 					break;
 				case '9':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Venta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case9");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND (EstatusVenta='Venta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case9");
 					break;
 				case '10':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case10");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa' AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case10");
 					break;
 				case '11':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case11");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Condominio'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case11");
 					break;
 				case '12':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case12");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Departamento'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case12");
 					break;
 				case '13':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case13");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case13");
 					break;			
 				case '14':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case14");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Local'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case14");
 					break;
 				case '15':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case15");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Oficina'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case15");
 					break;
 				case '16':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case16");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case16");
 					break;
 				case '17':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case17");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Bodega'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case17");
 					break;
 				case '18':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND EstatusVenta='Renta'||'VentaRenta' AND Estatus='1' AND publicacion='1'")or die("no case18");
+					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case18");
 					break;
 				/*case '19':
 					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa'||idTipo='Condominio' ||idTipo='Departamento'")or die("no case");
@@ -339,9 +339,9 @@
 													<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
 													<div class="PStyleNe"></div>
 												</a>
-	                                            <div class="box_type">$'.$precio.'</div>
+	                                            <div class="box_type">$'.$precio.' M.N.</div>
 	                                        </div>
-	                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode($fila[titulo])).'</a></h2>
+	                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
 	                                        <div class="boxed_mini_details clearfix">
 	                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
 	                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
@@ -462,7 +462,7 @@
 				
 			}
 			//echo $qry;
-			$result=$this->conexion->query($qry);
+			$result=$this->conexion->query($qry)or die(" no hay resultado");
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
 				if ($res[PrecioVenta]!=0) {
                     	$precio= number_format($res[PrecioVenta]);
@@ -486,7 +486,7 @@
 									<!--<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>-->
 									<span class="WhiteSquare"><a href="single-property.php?id='.$res[idPropiedad].'"><i class="fa fa-link"></i></a></span>
 								</div><!-- end Buttons -->
-								<div class="box_type">$ '.$precio.'</div>
+								<div class="box_type">$ '.$precio.' M.N.</div>
 								<div class="status_type">'.utf8_encode(utf8_decode($res[EstatusVenta])).'</div>
 							</div><!-- ImageWrapper -->
                             
@@ -526,10 +526,10 @@ class SliderPrincipal extends Conexion
             $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND Estatus='1' AND publicacion='1'")or die("Falló query del slider");
             while ($slide = $sliders->fetch_array(MYSQL_ASSOC)){
             	if ($slide[PrecioVenta]!=0) {
-	                                            	$precio= number_format($slide[PrecioVenta]);
-	                                            } else {
-	                                            	$precio= number_format($slide[PrecioRenta]);
-	                                            }
+	                	$precio= number_format($slide[PrecioVenta]);
+	                } else {
+	                	$precio= number_format($slide[PrecioRenta]);
+	                }
                	
                 $grid .= '
                     <li>
@@ -538,7 +538,7 @@ class SliderPrincipal extends Conexion
                                 <h3><a href="single-property.php?id='.$slide[idPropiedad].'">'.utf8_encode(utf8_decode($slide[titulo])).'</a></h3>
                                 <p>'.nl2br(utf8_encode(utf8_decode(substr($slide[Descripcion], 0,140)))) .' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
                                 <span class="type">Casa</span>
-                                <span class="price">$'.$precio.'</span>
+                                <span class="price">$'.$precio.' M.N.</span>
                                 <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.utf8_encode(utf8_decode($slide[EstatusVenta])).'</a>
                             </div>
                         </div>

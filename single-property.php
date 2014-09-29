@@ -19,9 +19,9 @@
 
     $unica = $propSelect->fetch_array(MYSQL_ASSOC);
     if ($unica[PrecioVenta]!=0) {
-        $precio= $unica[PrecioVenta];
+        $precio= number_format($unica[PrecioVenta]);
     } else {
-        $precio= $unica[PrecioRenta];
+        $precio= number_format($unica[PrecioRenta]);
     }
      $secc=$muestra->seccion();
    
@@ -328,7 +328,7 @@
 							<div class="title clearfix">
                             	<!--<span class="agent_img pull-right"><a data-placement="bottom" data-toggle="tooltip" data-original-title="Mark ANTHONY" title="" href="single-agent.html"><img width="75" class="img-responsive img-thumbnail" src="demos/03_team.png" alt=""></a></span>-->
                             	<h3><?php echo utf8_encode($unica[titulo]); ?>
-                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark>$<?php echo $precio; ?></mark></small>
+                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark>$<?php echo $precio." M.N."; ?></mark></small>
                                 </h3>
 							</div><!-- end title -->
                             <div class="title clearfix">
@@ -339,6 +339,11 @@
                                             <!--<span class="t_twitterfollow"displayText="witter Follow" st_username="sharethis"></span>-->
                                             <span class="st_email" displayText="Email"></span>
                                         
+                            </div>
+                            <div class="title clearfix">
+                                
+                                    <a <?php echo 'href="clases/pdf.php?idProp='.$_GET[id].'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/pdf4.png" alt="Exportar a PDF"></a>
+                                 
                             </div>
 
 							<div class="boxed_mini_details1 clearfix">
@@ -358,7 +363,7 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                                <p><strong><?php echo nl2br(utf8_encode(utf8_decode($unica[Descripcion]))) ; ?></strong></p>
+                                <p><strong><?php echo nl2br(utf8_encode($unica[Descripcion])) ; ?></strong></p>
                                 <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica[idPersonalizado])); ?></strong></p>
                                  <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica[EstatusVenta])); ?></strong></p>
 
