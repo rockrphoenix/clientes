@@ -79,29 +79,49 @@ class Pdf extends FPDF
 
 	function Header(){
 		//Logo
-		$this->Image("../logotipo/logo.jpg" , 25 ,8, 25 , 25 , "JPG" );
-		$this->SetFont('Arial','',10);
-		$this->Text(65,14,'Yet! Inmobiliario',0,'L', 0);
+		$this->Image("../logotipo/logo.jpg" , 25 ,18, 57.15,26.458333333, "JPG" );
+		
 		$this->Ln(25);
 		}
 		 
 	function Footer(){
 		$this->SetY(-15);
 		$this->SetFont('Arial','B',8);
-		$this->Cell(100,10,utf8_decode('COPYRIGHT © 2014 Yet! Inmobiliario.'),0,0,'L');
+		$this->Cell(100,10,utf8_decode('Powered by Yet! Inmobiliario.'),0,0,'L',0);
+
 		}
 
 		function muetraimagenes(){
 			$str=new consult($_GET);
 			$string=$str->obtenImagenes();
 			//var_dump($string) ;
-			$this->Image($string[0] , 120 ,55, 75 , 50 , "JPG" );
+			$this->Image($string[0] , 120 ,35, 75 , 50 , "JPG" );
 			shuffle($string);
-			$this->Image($string[0] , 120 ,110, 35 , 25 , "JPG" );
-			$this->Image($string[1] , 160 ,110, 35 , 25 , "JPG" );
-			$this->Image($string[2] , 120 ,140, 35 , 25 , "JPG" );
-			$this->Image($string[3] , 160 ,140, 35 , 25 , "JPG" );
+			$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
+			$this->Image($string[1] , 160 ,100, 35 , 25 , "JPG" );
+			$this->Image($string[2] , 120 ,130, 35 , 25 , "JPG" );
+			$this->Image($string[3] , 160 ,130, 35 , 25 , "JPG" );
 						
+		}
+		function cuadro(){
+			$this->SetFont('Arial','',11);
+			$this->Text(125,170,'Comentarios :');
+			$this->SetLineWidth(1);
+			$this->Rect(120,165,75,85);
+			$this->SetLineWidth(.5);
+			$this->Line(125,180,190,180);
+			$this->SetLineWidth(.5);
+			$this->Line(125,190,190,190);
+			$this->SetLineWidth(.5);
+			$this->Line(125,200,190,200);
+			$this->SetLineWidth(.5);
+			$this->Line(125,210,190,210);
+			$this->SetLineWidth(.5);
+			$this->Line(125,220,190,220);
+			$this->SetLineWidth(.5);
+			$this->Line(125,230,190,230);
+			$this->SetLineWidth(.5);
+			$this->Line(125,240,190,240);
 		}
 		function Cliente($telprin,$telsec,$correocontacto){
 			$this->SetFont('Arial','',11);
@@ -350,7 +370,7 @@ class Pdf extends FPDF
 		    
 		    $this->AddPage();
 		    $this->muetraimagenes();
-		    
+		    $this->cuadro();
 		    $this->Cliente($telprin,$telsec,$correocontacto);
 		    $this->Ln(8);
 		    $this->ChapterTitle($num,$title,$precio);
@@ -387,7 +407,8 @@ class Pdf extends FPDF
 	                }
 	              
 	$pdf->PrintInfo(1,$result[titulo],$result[Descripcion],$result[idTipo],$result[EstatusVenta],$precio,$result[idPersonalizado],$result[NumeroCuartos],$result[NumeroBanios],$result[M2terreno],$result[M2Construccion],$result[Municipio],$result[Estado],$result[Colonia],$result[CP],$result[CuartoServicio],$result[NivelesConstruidos],$result[M2Jardin],$result[NumeroCocherasDescubiertas],$result[TipoDpto],$result[NumeroCocheras],$result[NumeroCocherasVisitas],$result[EstadoConservacion],$result[nunidades],$result[nnounidades],$result[Mfondo],$result[Mfrente],$result[NivelUbicacion],$result[NumeroPrivados],$result[FormaTerreno],$result[UsoSuelo],$result[ConcentracionIndustrial],$result[Ferrocarril],$result[TransporteMultimodal],$result[M2Oficina],$result[m2bodega],$result[Andenes],$result[AreaManiobras],$result[AlturaLibre],$result[TipoTecho],$result[CargaPisoToneladas],$result[Hectareas],$result[TipoRancho],$result[SistemaRiego],$result[VistaPanoramica],$result[AbiertoVisitantes],$result[LagunaCercana],$result[RioCercano],$result[Establo],$result[SuperficieAgricola],$result[SuperficiePastizal],$result[SuperficieHabitable],$result[NumeroPozos],$result[NumeroCasas],$result2[telprinc],$result2[telsec],$result2[correocontacto]);
+	$link=$pdf->AddLink();
+	$pdf->Link(38,265,36,7,'http://yetinmobiliario.com/');
 	
-	
-	$pdf->Output()
+	$pdf->Output();
  ?>
