@@ -413,9 +413,10 @@
                                                                             </div><!-- image -->
                                                                             <div class="agent_desc">
                                                                                 <h3 class="title">'.$as['nombres'].'</h3>
-                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
                                                                                 <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
                                                                                 <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
+                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
+                                                                                
                                                                             </div><!-- agento desc -->
                                                                         </div>'; }?>
                      </div><!-- end of agents_widget -->
@@ -473,10 +474,7 @@
                                                 <div class="col-lg-9">
                                                     <div class="agencies_desc">
                                                         <h3 class="title">'.$ofi['nombre'].'</h3>
-                                                        <p>'.$ofi['calle'].', '.$ofi['numero'].', '.$ofi['no_int'].'<br>
-                                                        '.$ofi['colonia'].'<br>
-                                                        '.$ofi['delegacion'].'<br>
-                                                        '.$ofi['estado'].'<br></p>
+                                                        <p>'.nl2br($ofi['descripcion']).'</p>
                                                         <!--<a href="#" class="btn btn-primary btn-sm">Detalles</a>-->
                                                         
                                                     </div><!-- agencies_desc -->
@@ -484,7 +482,7 @@
                                                 <div class="clearfix"></div>
                                                 <div class="agencies_meta">
                                                     
-                                                    <span><i class="fa fa-phone-square"></i> '.$ofi['telefono'].'</span>
+                                                    <!--<span><i class="fa fa-phone-square"></i> </span>-->
                                                 </div><!-- end agencies_meta -->
                                             </div><!-- end boxes -->
                                         </div><!-- end col-6 -->

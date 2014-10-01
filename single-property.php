@@ -328,7 +328,7 @@
 							<div class="title clearfix">
                             	<!--<span class="agent_img pull-right"><a data-placement="bottom" data-toggle="tooltip" data-original-title="Mark ANTHONY" title="" href="single-agent.html"><img width="75" class="img-responsive img-thumbnail" src="demos/03_team.png" alt=""></a></span>-->
                             	<h3><?php echo utf8_encode($unica[titulo]); ?>
-                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark>$<?php echo $precio." M.N."; ?></mark></small>
+                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark><?php if ($unica[EstatusVenta]=="Venta-Renta") {echo "Venta $ ".number_format($unica[PrecioVenta])." M.N.  / Renta $ ".number_format($unica[PrecioRenta])."M.N.";}else{echo $precio." M.N.";}  ?></mark></small>
                                 </h3>
 							</div><!-- end title -->
                             <div class="title clearfix">
@@ -348,10 +348,12 @@
 
 							<div class="boxed_mini_details1 clearfix">
                             <?php if ($unica[idTipo]=="Departamento") {
-                                $tipe="Depto.";
-                            }else{
-                                $tipe=$unica[idTipo];
-                                } ?>
+                                        $tipe="Depto.";
+                                    }elseif ($unica[idTipo]=="Condominio") {
+                                        $tipe="Condo.";
+                                    }else{
+                                        $tipe=$unica[idTipo];
+                                    } ?>
 								<span class="type first"><strong>Tipo</strong><a href="agencies.html"><?php echo utf8_encode($tipe); ?></a></span>
 								<span class="sqft"><strong>C-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2Construccion] ;?></span>
                                 <span class="sqft"><strong>T-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2terreno] ;?></span>
@@ -363,7 +365,7 @@
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                                <p><strong><?php echo nl2br(utf8_encode($unica[Descripcion])) ; ?></strong></p>
+                                <p><strong><?php echo nl2br(utf8_encode(utf8_decode($unica[Descripcion]))) ; ?></strong></p>
                                 <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica[idPersonalizado])); ?></strong></p>
                                  <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica[EstatusVenta])); ?></strong></p>
 
@@ -584,16 +586,17 @@
                                                             $asesores = $muestra->asesores();
                                                                     while ($as = $asesores->fetch_array(MYSQL_ASSOC)) {
                                                                         echo'<div class="agent boxes clearfix" data-effect="slide-right">
-                                                                                <div class="image">
-                                                                                    <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
-                                                                                </div><!-- image -->
-                                                                                <div class="agent_desc">
-                                                                                    <h3 class="title">'.$as['nombres'].'</h3>
-                                                                                    <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
-                                                                                    <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
-                                                                                    <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
-                                                                                </div><!-- agento desc -->
-                                                                             </div>';}?>
+                                                                            <div class="image">
+                                                                                <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
+                                                                            </div><!-- image -->
+                                                                            <div class="agent_desc">
+                                                                                <h3 class="title">'.$as['nombres'].'</h3>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
+                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
+                                                                                
+                                                                            </div><!-- agento desc -->
+                                                                        </div>';}?>
                                                 </div><!-- end of agents_widget -->
                         </div><!-- end of widget -->
                      	<!--<div class="widget clearfix">

@@ -326,9 +326,10 @@ $bus=$ava->busquedAvanzada();
                                                                             </div><!-- image -->
                                                                             <div class="agent_desc">
                                                                                 <h3 class="title">'.$as['nombres'].'</h3>
-                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
                                                                                 <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
                                                                                 <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
+                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
+                                                                                
                                                                             </div><!-- agento desc -->
                                                                         </div>'; }?>           
                             </div><!-- end of agents_widget -->

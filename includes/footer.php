@@ -72,7 +72,7 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-lg-6 col-sm-6 col-md-6">
-                        <p><small>COPYRIGHT C 2014  <a href="http://www.yetinmobiliario.com" target="_blank">Yet! Inmobiliario. </a>.</small></p>
+                        <p><small>COPYRIGHT &copy; 2014  <a href="http://www.yetinmobiliario.com" target="_blank">Yet! Inmobiliario. </a></small></p>
                     </div>
                 	<div class="col-lg-6 col-sm-6 col-md-6">
                         <div class="social clearfix pull-right">

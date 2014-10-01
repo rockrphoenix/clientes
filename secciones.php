@@ -347,16 +347,17 @@ require_once("clases/class.listar.php");
                                                             $asesores = $muestra->asesores();
                                                                     while ($as = $asesores->fetch_array(MYSQL_ASSOC)) {
                                                                         echo'<div class="agent boxes clearfix" data-effect="slide-right">
-                                                                                <div class="image">
-                                                                                    <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
-                                                                                </div><!-- image -->
-                                                                                <div class="agent_desc">
-                                                                                    <h3 class="title">'.$as['nombres'].'</h3>
-                                                                                    <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
-                                                                                    <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
-                                                                                    <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
-                                                                                </div><!-- agento desc -->
-                                                                             </div>';}?>                         
+                                                                            <div class="image">
+                                                                                <img class="img-circle img-responsive img-thumbnail" src="demos/asesor.png" alt="">
+                                                                            </div><!-- image -->
+                                                                            <div class="agent_desc">
+                                                                                <h3 class="title">'.$as['nombres'].'</h3>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['tel'].'</span></p>
+                                                                                <p><span><i class="fa fa-phone-square"></i>'.$as['cel'].'</span></p>
+                                                                                <p><span><i class="fa fa-envelope"></i>'.$as['email'].'</span></p>
+                                                                                
+                                                                            </div><!-- agento desc -->
+                                                                        </div>';}?>                         
                             </div><!-- end of agents_widget -->
 						</div><!-- end of widget -->
                      	<!--<div class="widget clearfix">
