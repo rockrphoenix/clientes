@@ -328,16 +328,7 @@
 					break;
 				case '18':
 					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Rancho'AND (EstatusVenta='Renta'OR'VentaRenta') AND Estatus='1' AND publicacion='1'")or die("no case18");
-					break;
-				/*case '19':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Casa'||idTipo='Condominio' ||idTipo='Departamento'")or die("no case");
-					break;
-				case '20':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Edificio'||idTipo='Local' ||idTipo='Oficina'||idTipo='Bodega' ")or die("no case");
-					break;
-				case '21':
-					$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND idTipo='Terreno'||idTipo='Rancho'")or die("no case");
-					break;	*/							
+					break;						
 				default:
 					if ($prop==0) {
 						echo"No se han registrado propiedades";
@@ -390,6 +381,133 @@
 					}
 						
 			return $comunes;
+		}
+		function residencial(){
+		
+		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND (idTipo='Casa'OR idTipo='Condominio' OR idTipo='Departamento') AND Estatus='1' AND publicacion='1' ")or die("no existen propiedades residenciales");
+		$cont=0;
+							while ($fila=$prop->fetch_array(MYSQL_ASSOC)) {
+								$residuo=$cont%4;
+								if ($residuo==0) {
+									$box="boxes first";
+								}elseif (($residuo%3)==0) {
+									$box="boxes last";
+								}else{
+									$box="boxes";
+								}
+								if ($fila[PrecioVenta]!=0) {
+		                                            	$precio= number_format($fila[PrecioVenta]);
+		                                            } else {
+		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            }  
+		            			
+		            			$residencial .='<div class="col-lg-4 col-md-4 col-sm-4">
+			                                    <div class="'.$box.'">
+			                                        <div class="boxes_img ImageWrapper">
+														<a href="single-property.php">
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+															<div class="PStyleNe"></div>
+														</a>
+			                                            <div class="box_type">$'.$precio.' M.N.</div>
+			                                        </div>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <div class="boxed_mini_details clearfix">
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                        </div>
+			                                    </div><!-- end boxes -->
+			                                </div>';
+			                                 $cont++;
+							}
+								
+					return $residencial;
+		}
+		function comercial(){
+		
+		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND (idTipo='Edificio'OR idTipo='Local' OR idTipo='Oficina' OR idTipo='Bodega') AND Estatus='1' AND publicacion='1' ")or die("no existen propiedades comerciales");
+		$cont=0;
+							while ($fila=$prop->fetch_array(MYSQL_ASSOC)) {
+								$residuo=$cont%4;
+								if ($residuo==0) {
+									$box="boxes first";
+								}elseif (($residuo%3)==0) {
+									$box="boxes last";
+								}else{
+									$box="boxes";
+								}
+								if ($fila[PrecioVenta]!=0) {
+		                                            	$precio= number_format($fila[PrecioVenta]);
+		                                            } else {
+		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            }  
+		            			
+		            			$comer .='<div class="col-lg-4 col-md-4 col-sm-4">
+			                                    <div class="'.$box.'">
+			                                        <div class="boxes_img ImageWrapper">
+														<a href="single-property.php">
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+															<div class="PStyleNe"></div>
+														</a>
+			                                            <div class="box_type">$'.$precio.' M.N.</div>
+			                                        </div>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <div class="boxed_mini_details clearfix">
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                        </div>
+			                                    </div><!-- end boxes -->
+			                                </div>';
+			                                 $cont++;
+							}
+								
+					return $comer;
+		}
+
+		function terrenos(){
+		
+		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND (idTipo='Terreno'OR idTipo='Rancho' ) AND Estatus='1' AND publicacion='1' ")or die("no existen Terrenos");
+		$cont=0;
+							while ($fila=$prop->fetch_array(MYSQL_ASSOC)) {
+								$residuo=$cont%4;
+								if ($residuo==0) {
+									$box="boxes first";
+								}elseif (($residuo%3)==0) {
+									$box="boxes last";
+								}else{
+									$box="boxes";
+								}
+								if ($fila[PrecioVenta]!=0) {
+		                                            	$precio= number_format($fila[PrecioVenta]);
+		                                            } else {
+		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            }  
+		            			
+		            			$terreno .='<div class="col-lg-4 col-md-4 col-sm-4">
+			                                    <div class="'.$box.'">
+			                                        <div class="boxes_img ImageWrapper">
+														<a href="single-property.php">
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+															<div class="PStyleNe"></div>
+														</a>
+			                                            <div class="box_type">$'.$precio.' M.N.</div>
+			                                        </div>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <div class="boxed_mini_details clearfix">
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                        </div>
+			                                    </div><!-- end boxes -->
+			                                </div>';
+			                                 $cont++;
+							}
+								
+					return $terreno;
 		}
 
 		function Estados(){

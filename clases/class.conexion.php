@@ -1,6 +1,6 @@
 <?php
 
-    class Conexion
+   /* class Conexion
     {
         protected $conexion;
         public $id;
@@ -19,10 +19,10 @@
         }
 
 
-    }
+    }*/
  
 
-	/*class Conexion
+	class Conexion
 	{
 		protected $conexion;
 		protected $id;
@@ -34,5 +34,5 @@
 			$this->id = 27; //ponga aquí el id de cliente
 			$this->inmobiliaria = 23;  //ponga aquí aquí el id de inmobiliaria
 		}
-	}*/
+	}
 ?>

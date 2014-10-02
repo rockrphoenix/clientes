@@ -1,10 +1,14 @@
 <?php
     require_once("clases/class.listar.php");
+   
     
     $muestra = new Listados($_POST);
     $prop=$muestra->PropiedadesDest();
     $prop2=$muestra->propDestUp();
     $prop3=$muestra->todasProp();
+    $resid=$muestra->residencial();
+    $comer=$muestra->comercial();
+    $terreno=$muestra->terrenos();
     $red = $muestra->redes();
     
     $redes = $red->fetch_array(MYSQL_ASSOC);
@@ -21,6 +25,8 @@
     $nvoEstilo = fopen('prueba.css', 'w+');
     fwrite($nvoEstilo, $estilos);
     fclose($nvoEstilo);
+
+    
 ?>
 
 
@@ -60,6 +66,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="assets/ico/apple-touch-icon-144x144.png">
      <script src="assets/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/combos.js"></script>
+    
     <!-- Termina combos dependientes-->
 
         
@@ -384,7 +391,8 @@
                 	<div class="col-lg-7 col-md-9 col-sm-9 col-xs-12 clearfix">
                         <div id="tabbed_widget" class="tabbable clearfix" data-effect="slide-bottom"> 
                           <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab" data-toggle="tab">Residencial</a></li>
+                            <li class="active"><a href="#tab" data-toggle="tab">Todas</a></li>
+                            <li><a href="#tab1" data-toggle="tab">Residencial</a></li>
                             <li><a href="#tab2" data-toggle="tab">Comercial</a></li>
                             <li><a href="#tab3" data-toggle="tab">Terrenos</a></li>
                           </ul>
@@ -394,11 +402,34 @@
                                     
                                     echo $prop3;
                                  ?> 
-
-                                </div><!-- tabbed_widget -->
-							</div><!-- tab-content -->
-						</div> <!-- widget -->  
-					</div><!-- end col-lg-7 -->
+                            </div><!-- tab pane-->
+                            <div class="tab-pane" id="tab1">
+                                <?php 
+                                    
+                                    echo $resid;
+                                 ?>
+                                
+                            </div><!-- tab pane -->
+                            <div class="tab-pane" id="tab2">
+                                <?php 
+                                    
+                                    echo $comer;
+                                 ?>
+                                
+                            </div><!-- tab pane -->
+                            <div class="tab-pane" id="tab3">
+                                <?php 
+                                    
+                                    echo $terreno;
+                                 ?>
+                               
+                            
+                            
+                            
+                            </div><!-- tabbed_widget -->
+                            </div><!-- tab-content -->
+                        </div> <!-- widget -->  
+                    </div><!-- end col-lg-7 -->
                     
                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
                                             <div class="widget clearfix">
