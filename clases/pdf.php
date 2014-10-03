@@ -204,9 +204,9 @@ class Pdf extends FPDF
 		    $this->SetTextColor(0,0,0);
 		    $this->Cell(0,5,utf8_decode($del).", ".utf8_decode($est));
 		    $this->Ln();
-		    $this->Cell(0,5,utf8_decode('Colonia: ').$col);
+		    $this->Cell(0,5,utf8_decode('Colonia: '.$col));
 		    $this->Ln();
-		    $this->Cell(0,5,utf8_decode('Código postal: ').$cp);
+		    $this->Cell(0,5,utf8_decode('Código postal: '.$cp));
 		    $this->Ln(6);
 		    $this->SetFont('Arial','B',10);
 		    $this->SetTextColor(220,50,50);
