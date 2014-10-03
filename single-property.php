@@ -2,9 +2,10 @@
     require_once("clases/class.listar.php");
     $muestra = new Listados($_GET);
     $prop2=$muestra->propDestUp();
-    $prop3=$muestra->todasProp();
+    
     $muestra2 = new listaProp($_GET);
     $propSelect=$muestra2->PropXId();
+    $comun=$muestra2->comunes();
     $red = $muestra->redes();
     $redes = $red->fetch_array(MYSQL_ASSOC);
     $slider=$muestra->muestraImagenes();
@@ -558,11 +559,15 @@
                         <!--</div>--><!-- end agent_boxes -->
                         
 						<div class="property_wrapper boxes clearfix">
-							<h3 class="big_title">Propiedades</h3>
+							<h3 class="big_title">Propiedades similares</h3>
                      		<div class="row">
                                  <?php 
+                                    if (!$comun) {
+                                        echo "<p>No existen propidedades similares</p>";
+                                    }else{
+                                       echo $comun; 
+                                    }
                                     
-                                    echo $prop3;
                                  ?>
                             </div><!-- end row -->
 						</div>   

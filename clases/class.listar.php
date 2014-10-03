@@ -218,6 +218,7 @@
 					$cont=0;
 					
 					while ($fila=$prop->fetch_array(MYSQL_ASSOC)) {
+						
 						$residuo=$cont%4;
 						if ($residuo==0) {
 							$box="boxes first";
@@ -249,7 +250,7 @@
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                            <div class="status_type">'.utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,40))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,30))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
 			                                       
 			                                        <div class="boxed_mini_details1 clearfix">
 			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
@@ -261,9 +262,7 @@
 			                                </div>';
 			                                $cont++;
 			                            }}
-			            if ($cont>=4) {
-			                            	$rejillaUp.="";
-			                            }                
+			                           
                 return $rejillaUp;
 			
 
@@ -357,7 +356,7 @@
                                             	$precio= number_format($fila[PrecioRenta]);
                                             }  
             			
-            			$comunes .='<div class="col-lg-4 col-md-4 col-sm-4">
+            			$todas .='<div class="col-lg-4 col-md-4 col-sm-4">
 	                                    <div class="'.$box.'">
 	                                        <div class="boxes_img ImageWrapper">
 												<a href="single-property.php">
@@ -380,8 +379,9 @@
 						
 					}
 						
-			return $comunes;
+			return $todas;
 		}
+
 		function residencial(){
 		
 		$prop=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id'AND (idTipo='Casa'OR idTipo='Condominio' OR idTipo='Departamento') AND Estatus='1' AND publicacion='1' ")or die("no existen propiedades residenciales");
@@ -725,6 +725,50 @@ class SliderPrincipal extends Conexion
     		return $prop;
     		
     	}
+    	function comunes(){
+			$prop=$this->conexion->query("SELECT idTipo,EstatusVenta FROM consultapropiedad2 WHERE idcliente='$this->id'AND idPropiedad='$_GET[id]' AND Estatus='1' AND publicacion='1'")or die("no comun");
+    		$prop1=$prop->fetch_array(MYSQL_ASSOC);
+
+    		$comunes=$this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND idTipo ='$prop1[idTipo]' AND EstatusVenta ='$prop1[EstatusVenta]' AND idPropiedad<>'$_GET[id]' AND Estatus='1' AND publicacion='1'")or die("no hay propiedades comunes");
+    		$cont=0;
+							while ($fila=$comunes->fetch_array(MYSQL_ASSOC)) {
+								$residuo=$cont%4;
+								if ($residuo==0) {
+									$box="boxes first";
+								}elseif (($residuo%3)==0) {
+									$box="boxes last";
+								}else{
+									$box="boxes";
+								}
+								if ($fila[PrecioVenta]!=0) {
+		                                            	$precio= number_format($fila[PrecioVenta]);
+		                                            } else {
+		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            }  
+		            			
+		            			$comun .='<div class="col-lg-4 col-md-4 col-sm-4">
+			                                    <div class="'.$box.'">
+			                                        <div class="boxes_img ImageWrapper">
+														<a href="single-property.php">
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+															<div class="PStyleNe"></div>
+														</a>
+			                                            <div class="box_type">$'.$precio.' M.N.</div>
+			                                        </div>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <div class="boxed_mini_details clearfix">
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                        </div>
+			                                    </div><!-- end boxes -->
+			                                </div>';
+			                                 $cont++;
+							}
+								
+					return $comun;
+		}
     } 
 
 
@@ -733,6 +777,6 @@ class SliderPrincipal extends Conexion
 /*CREATE ALGORITHM = UNDEFINED VIEW `consultaPropiedad2` (idPropiedad,idcliente,titulo, idPersonalizado,idTipo,Descripcion, PrecioVenta, PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP) 
 												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion*/
 //crear vista consulta cliente
-/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter,telprinc,telsec,correocontacto) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter,telprinc,telsec,correocontacto FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
+/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter,youtube,telprinc,telsec,correocontacto) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter,youtube,telprinc,telsec,correocontacto FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
 ?>
 

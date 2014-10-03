@@ -97,10 +97,29 @@ class Pdf extends FPDF
 			//var_dump($string) ;
 			$this->Image($string[0] , 120 ,35, 75 , 50 , "JPG" );
 			shuffle($string);
-			$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
-			$this->Image($string[1] , 160 ,100, 35 , 25 , "JPG" );
-			$this->Image($string[2] , 120 ,130, 35 , 25 , "JPG" );
-			$this->Image($string[3] , 160 ,130, 35 , 25 , "JPG" );
+
+			switch (count($string)) {
+				case '1':
+					$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
+					break;
+				case '2':
+					$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
+					$this->Image($string[1] , 160 ,100, 35 , 25 , "JPG" );
+					break;
+				case '3':
+					$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
+					$this->Image($string[1] , 160 ,100, 35 , 25 , "JPG" );
+					$this->Image($string[2] , 120 ,130, 35 , 25 , "JPG" );
+					break;	
+				default:
+					$this->Image($string[0] , 120 ,100, 35 , 25 , "JPG" );
+					$this->Image($string[1] , 160 ,100, 35 , 25 , "JPG" );
+					$this->Image($string[2] , 120 ,130, 35 , 25 , "JPG" );
+					$this->Image($string[3] , 160 ,130, 35 , 25 , "JPG" );
+					break;
+			}
+			
+			
 						
 		}
 		function cuadro(){

@@ -10,7 +10,6 @@
     $comer=$muestra->comercial();
     $terreno=$muestra->terrenos();
     $red = $muestra->redes();
-    
     $redes = $red->fetch_array(MYSQL_ASSOC);
     $secc=$muestra->seccion();
    
@@ -197,9 +196,27 @@
                     </div>      
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
-                        
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title=""  target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title=""  target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
+                        <?php 
+                            if (!$redes[twitter]) {
+                                $twit.="";
+                            }else{
+                                $twit.=$redes[twitter];
+                            }
+                            if (!$redes[facebook]) {
+                                $face.="";
+                            }else{
+                                $face.=$redes[facebook];
+                            }
+                            if (!$redes[youtube]) {
+                                $yout.="";
+                            }else{
+                                $yout.=$redes[youtube];
+                            }
+
+                         ?>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title=""  target="_blank" <?php echo "href='".$twit."'" ?>><i class="fa fa-twitter"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title=""  target="_blank" <?php echo "href='".$face."'" ?>><i class="fa fa-facebook"></i></a></span>
+                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Youtube" title=""  target="_blank" <?php echo "href='".$yout."'" ?>><i class="fa fa-youtube"></i></a></span>
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
@@ -217,7 +234,8 @@
                                 <ul class="slides">
                                     <?php
                                         $grid = new SliderPrincipal();
-                                        echo $grid->slider();
+                                        $grid1=$grid->slider();
+                                        echo $grid1;
                                     ?> 
                                 </ul><!-- end slides -->
                             </div><!-- end flexslider -->
@@ -316,7 +334,7 @@
                     <div class="container">
                     	<div class="row">
                         	<div class="text-center clearfix">
-								<h3 class="big_title">Propiedades</h3>
+								<h3 class="big_title">Propiedades destacadas</h3>
                             </div>
                                 <?php 
                                     
@@ -399,28 +417,44 @@
                           <div class="tab-content tabbed_widget clearfix">
                             <div class="tab-pane active" id="tab">
                                <?php 
+                                    if (!$prop3) {
+                                       echo "<p>No existen propidedades en este ramo</p>";
+                                    }else{
+                                       echo $prop3; 
+                                    }
                                     
-                                    echo $prop3;
                                  ?> 
                             </div><!-- tab pane-->
                             <div class="tab-pane" id="tab1">
                                 <?php 
+                                    if (!$resid) {
+                                       echo "<p>No existen propidedades en este ramo</p>";
+                                    }else{
+                                       echo $resid;
+                                    }
                                     
-                                    echo $resid;
                                  ?>
                                 
                             </div><!-- tab pane -->
                             <div class="tab-pane" id="tab2">
                                 <?php 
+                                    if (!$comer) {
+                                       echo "<p>No existen propidedades en este ramo</p>";
+                                    }else{
+                                       echo $comer; 
+                                    }
                                     
-                                    echo $comer;
                                  ?>
                                 
                             </div><!-- tab pane -->
                             <div class="tab-pane" id="tab3">
                                 <?php 
+                                    if (!$terreno) {
+                                       echo "<p>No existen propidedades en este ramo</p>";
+                                    }else{
+                                       echo $terreno;
+                                    }
                                     
-                                    echo $terreno;
                                  ?>
                                
                             

@@ -116,7 +116,7 @@
                                         <li class="fhmm-content fullwidth">
                                             <div class="row">
                                                 <?php 
-                                    
+                                                
                                                     echo $prop2;
                                                  ?>
                                                
