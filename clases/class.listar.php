@@ -259,7 +259,7 @@
 			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
-			                                </div>';
+			                                </div><!-- end div -->';
 			                                $cont++;
 			                            }}
 			                           
@@ -702,7 +702,7 @@ class SliderPrincipal extends Conexion
                 ';
             }
 
-            	
+
           		return $grid;
           		
         }

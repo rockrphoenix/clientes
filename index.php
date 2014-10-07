@@ -512,8 +512,8 @@
                         </div>
                      <div class="widget text-center clearfix"></div>
                      </div>
-                   
-                    <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
+                   <!-- empieza asociaciones-->
+                    <!-- <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
                     <div class="widget clearfix">
                         <div class="title"><h3>Nuestras asociaciones</h3></div>
                         <div id="carousel-example-generic" class="carousel slide">
@@ -544,10 +544,11 @@
                             <a class="right carousel-control" data-slide="next" href="#carousel-example-generic"><span class="icon-next"></span></a>
                         </div>
                         <div class="widget text-center clearfix">
-                        
+                        </div>--><!-- end of widget --> 
+                            <!--</div>--><!-- end col-lg-4 -->
+                            <!--termina asiciaciones-->
 
-                        </div><!-- end of widget --> 
-                            </div><!-- end col-lg-4 --> 
+
  					<!--<div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
                     	<div class="widget clearfix">
                      	<div class="widget text-center clearfix">

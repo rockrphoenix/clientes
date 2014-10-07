@@ -115,9 +115,13 @@
                                     <ul class="dropdown-menu">
                                         <li class="fhmm-content fullwidth">
                                             <div class="row">
-                                                <?php 
-                                                
-                                                    echo $prop2;
+                                                <?php
+                                                    $prop21=explode('<!-- end div -->', $prop2);
+                                                    shuffle($prop21);
+                                                    for ($i=0; $i <4  ; $i++) { 
+                                            
+                                                        echo $prop21[$i];
+                                                    }
                                                  ?>
                                                
                         
