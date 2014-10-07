@@ -37,7 +37,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cliente - Prueba</title>
+    <title><?php echo $redes['titulopagina']?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -196,27 +196,31 @@
                     </div>      
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
-                        <?php 
+                         <?php 
                             if (!$redes[twitter]) {
                                 $twit.="";
                             }else{
-                                $twit.=$redes[twitter];
+                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
                             }
                             if (!$redes[facebook]) {
                                 $face.="";
                             }else{
-                                $face.=$redes[facebook];
+                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
                             }
                             if (!$redes[youtube]) {
                                 $yout.="";
                             }else{
-                                $yout.=$redes[youtube];
+                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
                             }
 
+                            echo $twit;
+                            echo $face;
+                            echo $yout;
+
                          ?>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title=""  target="_blank" <?php echo "href='".$twit."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title=""  target="_blank" <?php echo "href='".$face."'" ?>><i class="fa fa-facebook"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Youtube" title=""  target="_blank" <?php echo "href='".$yout."'" ?>><i class="fa fa-youtube"></i></a></span>
+                            
+                            
+                            
                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
@@ -235,7 +239,12 @@
                                     <?php
                                         $grid = new SliderPrincipal();
                                         $grid1=$grid->slider();
-                                        echo $grid1;
+                                        $grid2=explode('</li>', $grid1);
+                                        shuffle($grid2);
+                                        for ($i=0; $i < count($grid2) ; $i++) { 
+                                            
+                                            echo $grid2[$i];
+                                        }
                                     ?> 
                                 </ul><!-- end slides -->
                             </div><!-- end flexslider -->
@@ -503,7 +512,42 @@
                         </div>
                      <div class="widget text-center clearfix"></div>
                      </div>
+                   
+                    <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
+                    <div class="widget clearfix">
+                        <div class="title"><h3>Nuestras asociaciones</h3></div>
+                        <div id="carousel-example-generic" class="carousel slide">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-slide-to="0" data-target="#carousel-example-generic"></li>
+                                <li class="" data-slide-to="1" data-target="#carousel-example-generic"></li>
+                                <li class="" data-slide-to="2" data-target="#carousel-example-generic"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img alt="" src="images/asociaciones/ampi.jpg">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/conocer.jpg">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/coparmex.png">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/realtor.png">
+                                    
+                                </div>
+                            </div>
+                            <a class="left carousel-control" data-slide="prev" href="#carousel-example-generic"><span class="icon-prev"></span></a>
+                            <a class="right carousel-control" data-slide="next" href="#carousel-example-generic"><span class="icon-next"></span></a>
+                        </div>
+                        <div class="widget text-center clearfix">
+                        
 
+                        </div><!-- end of widget --> 
+                            </div><!-- end col-lg-4 --> 
  					<!--<div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
                     	<div class="widget clearfix">
                      	<div class="widget text-center clearfix">

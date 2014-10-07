@@ -701,7 +701,10 @@ class SliderPrincipal extends Conexion
                     </li>
                 ';
             }
-            return $grid;
+
+            	
+          		return $grid;
+          		
         }
     }	
 
@@ -777,6 +780,6 @@ class SliderPrincipal extends Conexion
 /*CREATE ALGORITHM = UNDEFINED VIEW `consultaPropiedad2` (idPropiedad,idcliente,titulo, idPersonalizado,idTipo,Descripcion, PrecioVenta, PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP) 
 												AS SELECT prop.idPropiedad,idcliente,titulo,idPersonalizado,idTipo,prop.Descripcion,PrecioVenta,PrecioRenta,ComisionVenta,ComisionREnta, Destaque, EstatusVenta,EstatusPropiedad, Estatus,publicacion, M2terreno, M2Construccion, M2Jardin, Mfondo, Mfrente, NumeroCuartos, NumeroBanios, NumeroMediosBanios, NumeroCocheras, NumeroCocherasDescubiertas, NumeroCocherasVisitas, EstadoConservacion, CuartoServicio, NivelesConstruidos, NivelUbicacion, TipoDpto, NumeroPrivados, idClasificacionEdificio, nunidades, nnounidades, FormaTerreno, UsoSuelo, ConcentracionIndustrial, Ferrocarril, TransporteMultimodal, M2Oficina, m2bodega, AreaManiobras, TipoTecho, Andenes, AlturaLibre,CargaPisoToneladas, Hectareas, SistemaRiego, AbiertoVisitantes, RioCercano, SuperficiePastizal, TipoRancho, VistaPanoramica, LagunaCercana, Establo, SuperficieAgricola, SuperficieHabitable, NumeroPozos, NumeroCasas,bdescripcion,descripcionr,Estado,Ciudad,Municipio,Colonia,Calle,NumeroExterior,NumeroInterior,CP FROM tblpropiedad prop,tblcaracteristicas carac,tblubicacion ubi WHERE prop.idcaracteristicas=carac.idcaracteristicas AND ubi.idUbicacion=prop.idUbicacion*/
 //crear vista consulta cliente
-/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,facebook,twitter,youtube,telprinc,telsec,correocontacto) AS SELECT inm.idCliente,dat.Email,Tel,Cel,facebook,twitter,youtube,telprinc,telsec,correocontacto FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
+/*CREATE ALGORITHM = UNDEFINED VIEW `consultacliente` (idCliente,Email,Tel,Cel,titulopagina,facebook,twitter,youtube,telprinc,telsec,correocontacto) AS SELECT inm.idCliente,dat.Email,Tel,Cel,titulopagina,facebook,twitter,youtube,telprinc,telsec,correocontacto FROM tbldatos dat,tblconfiguracion conf,tblinmobiliaria inm WHERE inm.idCliente=dat.iddatos AND conf.idInmobiliaria=inm.idInmobiliaria */										
 ?>
 

@@ -36,7 +36,7 @@ require_once("clases/class.listar.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cliente - Prueba</title>
+    <title><?php echo $redes['titulopagina']?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -193,10 +193,29 @@ require_once("clases/class.listar.php");
                     </div>      
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
-                        
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Twitter" title="" target="_blank" <?php echo "href='".$redes['twitter']."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="bottom" data-toggle="tooltip" data-original-title="Facebook" title="" target="_blank" <?php echo "href='".$redes['facebook']."'" ?>><i class="fa fa-facebook"></i></a></span>
-                        </div><!-- end social -->
+                          <?php 
+                            if (!$redes[twitter]) {
+                                $twit.="";
+                            }else{
+                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
+                            }
+                            if (!$redes[facebook]) {
+                                $face.="";
+                            }else{
+                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
+                            }
+                            if (!$redes[youtube]) {
+                                $yout.="";
+                            }else{
+                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
+                            }
+
+                            echo $twit;
+                            echo $face;
+                            echo $yout;
+
+                         ?>
+                         </div><!-- end social -->
                     </div>     
                 </div><!-- end row -->
                 </div></header>       
@@ -360,6 +379,39 @@ require_once("clases/class.listar.php");
                                                                         </div>';}?>                         
                             </div><!-- end of agents_widget -->
 						</div><!-- end of widget -->
+                        <div class="widget clearfix">
+                        <div class="title"><h3>Nuestras asociaciones</h3></div>
+                        <div id="carousel-example-generic" class="carousel slide">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-slide-to="0" data-target="#carousel-example-generic"></li>
+                                <li class="" data-slide-to="1" data-target="#carousel-example-generic"></li>
+                                <li class="" data-slide-to="2" data-target="#carousel-example-generic"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img alt="" src="images/asociaciones/ampi.jpg">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/conocer.jpg">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/coparmex.png">
+                                    
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="images/asociaciones/realtor.png">
+                                    
+                                </div>
+                            </div>
+                            <a class="left carousel-control" data-slide="prev" href="#carousel-example-generic"><span class="icon-prev"></span></a>
+                            <a class="right carousel-control" data-slide="next" href="#carousel-example-generic"><span class="icon-next"></span></a>
+                        </div>
+                        <div class="widget text-center clearfix">
+                        
+
+                        </div><!-- end of widget --> 
                      	<!--<div class="widget clearfix">
                         	<div class="title"><h3>Banner Ads</h3></div>
 							<img data-effect="fade" class="text-center img-thumbnail img-responsive" src="demos/01_banner.png" alt="">

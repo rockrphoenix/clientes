@@ -76,10 +76,29 @@
                     </div>
                 	<div class="col-lg-6 col-sm-6 col-md-6">
                         <div class="social clearfix pull-right">
-                       
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Twitter" title=""  target="_blank" <?php echo "href='".$twit."'" ?>><i class="fa fa-twitter"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Facebook" title="" target="_blank" <?php echo "href='".$face."'" ?>><i class="fa fa-facebook"></i></a></span>
-                            <span><a data-placement="top" data-toggle="tooltip" data-original-title="Youtube" title="" target="_blank" <?php echo "href='".$yout."'" ?>><i class="fa fa-youtube"></i></a></span>
+                            <?php 
+                            if (!$redes[twitter]) {
+                                $twit1.="";
+                            }else{
+                                $twit1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
+                            }
+                            if (!$redes[facebook]) {
+                                $face1.="";
+                            }else{
+                                $face1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
+                            }
+                            if (!$redes[youtube]) {
+                                $yout1.="";
+                            }else{
+                                $yout1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
+                            }
+
+                            echo $twit1;
+                            echo $face1;
+                            echo $yout1;
+
+                         ?>
+                            
                             <!--<span><a data-placement="top" data-toggle="tooltip" data-original-title="Google Plus" title="" href="#"><i class="fa fa-google-plus"></i></a></span>
                             <span><a data-placement="top" data-toggle="tooltip" data-original-title="Linkedin" title="" href="#"><i class="fa fa-linkedin"></i></a></span>
                             <span><a data-placement="top" data-toggle="tooltip" data-original-title="Github" title="" href="#"><i class="fa fa-github"></i></a></span>
