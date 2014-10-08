@@ -8,6 +8,7 @@
     $prop3=$muestra->todasProp();
     $resid=$muestra->residencial();
     $comer=$muestra->comercial();
+    $testi=$muestra->testimonialesind();
     $terreno=$muestra->terrenos();
     $red = $muestra->redes();
     $redes = $red->fetch_array(MYSQL_ASSOC);
@@ -354,7 +355,80 @@
                 </div><!-- end overlay1 -->
             </div><!-- end threewrapper -->
         </section><!-- end parallax -->
-                  
+<!--testimoniales-->
+        <section id="two-parallax" class="parallax" style="background-image: url('demos/03_parallax.jpg');" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+            <div class="threewrapper">
+                <div class="overlay1 dm-shadow">
+                    <div class="container">
+                        <div class="row">
+                            <div class="text-center clearfix">
+                                <h3 class="big_title">Testimonios <small>Nuestros clientes satisfechos </small></h3>
+                            </div><!-- text-center -->
+                                <?php 
+                                    if (!$testi) {
+                                        echo "<p>No existen comentarios que mostrar</p>";
+                                    }else{
+                                        //echo $testi;
+                                        $testi2=explode('<!--end testim-->', $testi);
+                                        shuffle($testi2);
+                                        for ($i=0; $i < count($testi2) ; $i++) { 
+                                            
+                                            echo $testi2[$i];
+                                        }
+                                    }
+                                    
+                                 ?>
+
+                            <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="boxes testimonial_widget text-right first" data-effect="slide-left">
+                                    <div class="image">
+                                        <img class="img-circle img-responsive img-thumbnail" alt="" src="demos/03_team.png">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">Mark ANTHONY</h3>
+                                    <p><i class="fa fa-quote-left"></i> Gehad van wijzigingen in een of andere vorm, door ingevoegde humor of willekeurig gekozen woorden die nog niet half geloofwaardig ogen.. <i class="fa fa-quote-right"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="boxes testimonial_widget text-left last" data-effect="slide-right">
+                                    <div class="image">
+                                        <img class="img-circle img-responsive img-thumbnail" alt="" src="demos/02_team.png">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">Sandra ROBERTS</h3>
+                                    <p><span><i class="fa fa-quote-left"></i></span> Vele variaties van passages van Lorem Ipsum beschikbaar maar het merendeel heeft te lijden gehad van wijzigingen in een of andere vorm, door ingevoegde humor of willekeurig gekozen woorden die nog niet half geloofwaardig ogen. <i class="fa fa-quote-right"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="boxes testimonial_widget text-right first" data-effect="slide-left">
+                                    <div class="image">
+                                        <img class="img-circle img-responsive img-thumbnail" alt="" src="demos/04_team.png">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">Amy JOHNSON</h3>
+                                    <p><i class="fa fa-quote-left"></i> Lorem ipsum dehad van wijzigingen in een of andere vorm, door ingevoegde humor of willekeurig gekozen woorden die nog niet half ogen.. <i class="fa fa-quote-right"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="boxes testimonial_widget text-left last" data-effect="slide-right">
+                                    <div class="image">
+                                        <img class="img-circle img-responsive img-thumbnail" alt="" src="demos/01_team.png">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">Robert PIRSON</h3>
+                                    <p><span><i class="fa fa-quote-left"></i></span> Vele variaties van passages van Lorem Ipsum beschikbaar maa, door ingevoegde humor of willekeurig gekozen woorden die nog niet half geloofwaardig ogen. <i class="fa fa-quote-right"></i></p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div><!-- end row -->
+                    </div><!-- end container -->
+                </div><!-- end overlay1 -->
+            </div><!-- end threewrapper -->
+        </section><!-- end parallax -->
+<!--termina testimoniales-->
         <section class="generalwrapper dm-shadow clearfix">
         	<div class="container">
 				<div class="row">
@@ -513,7 +587,7 @@
                      <div class="widget text-center clearfix"></div>
                      </div>
                    <!-- empieza asociaciones-->
-                    <!-- <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
+                   <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
                     <div class="widget clearfix">
                         <div class="title"><h3>Nuestras asociaciones</h3></div>
                         <div id="carousel-example-generic" class="carousel slide">
@@ -544,8 +618,8 @@
                             <a class="right carousel-control" data-slide="next" href="#carousel-example-generic"><span class="icon-next"></span></a>
                         </div>
                         <div class="widget text-center clearfix">
-                        </div>--><!-- end of widget --> 
-                            <!--</div>--><!-- end col-lg-4 -->
+                        </div><!-- end of widget --> 
+                            </div><!-- end col-lg-4 -->
                             <!--termina asiciaciones-->
 
 

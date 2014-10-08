@@ -380,7 +380,7 @@ require_once("clases/class.listar.php");
                             </div><!-- end of agents_widget -->
 						</div><!-- end of widget -->
  <!--empieza asociaciones-->                       
-                        <!-- <div class="widget clearfix">
+                        <div class="widget clearfix">
                         <div class="title"><h3>Nuestras asociaciones</h3></div>
                         <div id="carousel-example-generic" class="carousel slide">
                             <ol class="carousel-indicators">
@@ -412,7 +412,7 @@ require_once("clases/class.listar.php");
                         <div class="widget text-center clearfix">
                         
 
-                        </div> --><!-- end of widget --> 
+                        </div><!-- end of widget --> 
 <!--termina asociaciones-->                        
                      	<!--<div class="widget clearfix">
                         	<div class="title"><h3>Banner Ads</h3></div>

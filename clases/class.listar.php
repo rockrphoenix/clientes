@@ -669,6 +669,58 @@
 			return $str;
 
 		}
+		function testimonialesind(){
+			$test=$this->conexion->query("SELECT * FROM tbltestimoniales WHERE idcli='$this->id' AND estatus ='1' ")or die("no se encontraron testimoniales");
+			$cont=0;
+			while ($testim=$test->fetch_array(MYSQL_ASSOC)) {
+				$residuo=$cont%2;
+								if ($residuo%2==0) {
+									$box="text-right first";
+									$efect="slide-left";
+								}else{
+									$box="text-left last";
+									$efect="slide-right";
+								}
+				$text.='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="boxes testimonial_widget '.$box.'" data-effect="'.$efect.'">
+                                    <div class="image">
+                                        <img class="img-circle img-responsive img-thumbnail" alt="" src="logotipo/logo.jpg">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">'.nl2br($testim[descripcion]).'</h3>
+                                    <p><i class="fa fa-quote-left"></i> '.nl2br(substr($testim[comentario], 0,150)).'<a href="testimonials.php"> leer mas...</a><i class="fa fa-quote-right"></i></p>
+                                    </div>
+                                </div>
+                            </div><!--end testim-->';
+                            $cont++;
+			}
+			return $text;
+		}
+		function testimoniales(){
+			$test=$this->conexion->query("SELECT * FROM tbltestimoniales WHERE idcli='$this->id' AND estatus ='1' ")or die("no se encontraron testimoniales");
+			$cont=0;
+			while ($testim=$test->fetch_array(MYSQL_ASSOC)) {
+				$residuo=$cont%2;
+								if ($residuo%2==0) {
+									$box="text-right first";
+									$efect="slide-left";
+								}else{
+									$box="text-left last";
+									$efect="slide-right";
+								}
+				$text.='<div class="boxes testimonial_widget '.$box.'" data-effect="'.$efect.'">
+                                    <div class="image">
+                                    	<img class="img-circle img-responsive img-thumbnail" alt="" src="logotipo/logo.jpg">
+                                    </div>
+                                    <div class="testimonial_desc">
+                                    <h3 class="title">'.nl2br($testim[descripcion]).'</h3>
+                                    <p><i class="fa fa-quote-left"></i>'.nl2br($testim[comentario]).'<i class="fa fa-quote-right"></i></p>
+                                    </div>
+								</div><!--end testim-->';
+                            $cont++;
+			}
+			return $text;
+		}
        	
 	}
 
@@ -772,6 +824,7 @@ class SliderPrincipal extends Conexion
 								
 					return $comun;
 		}
+
     } 
 
 
