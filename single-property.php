@@ -9,7 +9,7 @@
     $red = $muestra->redes();
     $redes = $red->fetch_array(MYSQL_ASSOC);
     $slider=$muestra->muestraImagenes();
-    var_dump($slider);
+    //var_dump($slider);
     $aConf = $muestra->obtenerConfiguracion();
     $estilos = file_get_contents('style.css');
     $estilos = str_replace('[{color_a}]','#'.$aConf['ColorFondo'],$estilos);
