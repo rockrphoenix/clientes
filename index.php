@@ -569,25 +569,7 @@
                                                                         </div>'; }?>
                      </div><!-- end of agents_widget -->
                     </div><!-- end of widget -->
-                    <div class="widget clearfix">
-                            <div class="title"><h3>Secciones</h3></div>
-                            <ul class="list">
-                            <?php 
-                             echo $str;   
-
-                             ?>
-                                <!--<li><a title="" href="#">Support</a></li>
-                                <li><a title="" href="#">Get in touch</a></li>
-                                <li><a title="" href="#">About us</a></li>
-                                <li><a title="" href="#">Terms of use</a></li>
-                                <li><a title="" href="#">Copyrights</a></li>
-                                <li><a title="" href="#">Join us</a></li>-->
-                            </ul>
-                        </div>
-                     <div class="widget text-center clearfix"></div>
-                     </div>
-                   <!-- empieza asociaciones-->
-                   <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
+                     <!-- empieza asociaciones-->
                     <div class="widget clearfix">
                         <div class="title"><h3>Nuestras asociaciones</h3></div>
                         <div id="carousel-example-generic" class="carousel slide">
@@ -619,8 +601,26 @@
                         </div>
                         <div class="widget text-center clearfix">
                         </div><!-- end of widget --> 
-                            </div><!-- end col-lg-4 -->
+    
                             <!--termina asiciaciones-->
+                    <div class="widget clearfix">
+                            <div class="title"><h3>Secciones</h3></div>
+                            <ul class="list">
+                            <?php 
+                             echo $str;   
+
+                             ?>
+                                <!--<li><a title="" href="#">Support</a></li>
+                                <li><a title="" href="#">Get in touch</a></li>
+                                <li><a title="" href="#">About us</a></li>
+                                <li><a title="" href="#">Terms of use</a></li>
+                                <li><a title="" href="#">Copyrights</a></li>
+                                <li><a title="" href="#">Join us</a></li>-->
+                            </ul>
+                        </div>
+                     <div class="widget text-center clearfix"></div>
+                     </div>
+                  
 
 
  					<!--<div class="col-lg-3 col-md-6 col-sm-9 col-xs-12 last clearfix">
