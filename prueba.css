@@ -1975,13 +1975,13 @@
 	.testimonial_desc p i,
 	.agents_widget i,
 	.callus i {
-		color:#19B8DF;
+		color:#e32929;
 	}
 		
 	.fhmm .dropdown-menu > li > a:hover,
 	.fhmm .dropdown-menu > li > a:focus,
 	.searchmodule {
-		background-color:#19B8DF;
+		background-color:#e32929;
 	}
 	
 	.pagination > .active > a, .pagination > .active > span, 
@@ -2016,26 +2016,26 @@
 	.ps-mini-desc .price,
 	.blog-wrap div.post-date span.month,
 	.ps-desc .price {
-		background-color:#19B8DF;
+		background-color:#e32929;
 		color: #ffffff;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}
 
 	.topbar,
 	.fhmm .dropdown-menu {
-		border-top-color:#19B8DF
+		border-top-color:#e32929
 	}
 	
 	.post-wrapper-top h2 {
-		border-bottom-color:#19B8DF
+		border-bottom-color:#e32929
 	}
 	
 	.navbar.affix {
-		border-bottom:3px solid #19B8DF !important
+		border-bottom:3px solid #e32929 !important
 	}
 
 	.hovicon.effect-1:after {
-		box-shadow: 0 0 0 4px #19B8DF;
+		box-shadow: 0 0 0 4px #e32929;
 	}
 
 	
@@ -2095,14 +2095,14 @@
 	.ps-desc .status,
 	.pricing-table > .price .name,
 	ul.real-estate-cats-widget li ul li:before {
-		background-color:#F6700E;
+		background-color:#030414;
 		color: #ffffff;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	}
 	
 	.form-control:focus,
 	ul.real-estate-cats-widget li ul {
-		border-color:#F6700E;
+		border-color:#030414;
 	}
 	
 	.btn-primary {

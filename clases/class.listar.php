@@ -2,7 +2,7 @@
 	require_once("class.conexion.php");
 	
 	
-	//error_reporting(E_ALL ^ E_NOTICE);
+	error_reporting(E_ALL ^ E_NOTICE);
 	/**
 	* por marco izaguirre marco.izag@gmail.com
 	*para grupo syse
@@ -23,7 +23,7 @@
             $inmo = $this->conexion->query($qry)or die("No puedo asignar la inmobiliaria");
             
             $arrayInmo = $inmo->fetch_array(MYSQL_ASSOC);
-            $this->inmobiliaria = $arrayInmo[idInmobiliaria]; //ponga aquí aquí el id de inmobiliaria
+            $this->inmobiliaria = $arrayInmo['idInmobiliaria']; //ponga aquí aquí el id de inmobiliaria
             return $this->inmobiliaria;
         }
 		function obtenerConfiguracion(){
@@ -78,7 +78,7 @@
 		function muestraImagenes(){
 			
 			
-					$dir = "../../imagenes_cy/".$this->id."/".$_GET[id]."";
+					$dir = "../../imagenes_cy/".$this->id."/".$_GET['id']."";
 					//$dir = "http://imagenes.yetinmobiliario.com/".$this->id."/".$_GET[id]."";
 					
 					/*var_dump($dir);
@@ -101,10 +101,10 @@
 					    while (false !== ($entrada = readdir($gestor))) {
 					        if ($entrada != "." && $entrada != "..") {
 					        	if ($entrada == "principal.jpg") {
-					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[id].'/'.$entrada.'" width="200" alt=""></li>';
+					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET['id'].'/'.$entrada.'" width="200" alt=""></li>';
 					        		
 					        	}else{
-					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[id].'/'.$entrada.'" width="200" alt=""></li>';
+					        		$str.= '<li><img class="img-thumbnail" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET['id'].'/'.$entrada.'" width="200" alt=""></li>';
 					        		
 					        	}
 					            $cont++;
@@ -133,19 +133,19 @@
 						}else{
 							$box="boxes";
 						}
-						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= number_format($fila[PrecioVenta]);
+						if ($fila['PrecioVenta']!=0) {
+                                            	$precio= number_format($fila['PrecioVenta']);
                                             } else {
-                                            	$precio= number_format($fila[PrecioRenta]);
+                                            	$precio= number_format($fila['PrecioRenta']);
                                             }  
 
-						if ($fila[Destaque]==1) {
-							if ($fila[EstatusVenta]=="Venta-Renta") {
+						if ($fila['Destaque']==1) {
+							if ($fila['EstatusVenta']=="Venta-Renta") {
 								$rejilla .=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="'.$box.'" data-effect="slide-bottom">
                                         <div class="ImageWrapper boxes_img">
-                                            <img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+                                            <img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
                                             
                                             <div class="ImageOverlayH"></div>
                                             <div class="Buttons StyleSc">
@@ -153,20 +153,20 @@
                                                 </span>
                                                 <!--<span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
                                                 </span>-->
-                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
+                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila['idPropiedad'].'"><i class="fa fa-link"></i></a>
                                                 </span>
                                             </div>
                                            
-                                            <div class="box_type">$'.number_format($fila[PrecioVenta]).' M.N. <br>$'.number_format($fila[PrecioRenta]).' M.N.</div>
-                                            <div class="status_type">'. utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
+                                            <div class="box_type">$'.number_format($fila['PrecioVenta']).' M.N. <br>$'.number_format($fila['PrecioRenta']).' M.N.</div>
+                                            <div class="status_type">'. utf8_encode(utf8_decode($fila['EstatusVenta'])).'</div>
                                         </div>
-                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,30))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0,30))).'</a> <small class="small_title">'.$fila['CP'].', '.utf8_encode(utf8_decode($fila['Colonia'])).', '.utf8_encode(utf8_decode($fila['Municipio'])).', '.utf8_encode(utf8_decode($fila['Estado'])).'</small></h2>
                                        
                                         <div class="boxed_mini_details1 clearfix">
-                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
-                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
-                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila['M2Construccion'].'</span>
+                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
+                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
                                         </div>
                                         
                                     </div><!-- end boxes -->
@@ -176,8 +176,8 @@
 								$rejilla .=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="'.$box.'" data-effect="slide-bottom">
                                         <div class="ImageWrapper boxes_img">
-                                            <img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+                                            <img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
                                             
                                             <div class="ImageOverlayH"></div>
                                             <div class="Buttons StyleSc">
@@ -185,19 +185,19 @@
                                                 </span>
                                                 <!--<span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
                                                 </span>-->
-                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
+                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila['idPropiedad'].'"><i class="fa fa-link"></i></a>
                                                 </span>
                                             </div>
                                             <div class="box_type">$'.$precio.' M.N.</div>
-                                            <div class="status_type">'. utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
+                                            <div class="status_type">'. utf8_encode(utf8_decode($fila['EstatusVenta'])).'</div>
                                         </div>
-                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,30))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0,30))).'</a> <small class="small_title">'.$fila['CP'].', '.utf8_encode(utf8_decode($fila['Colonia'])).', '.utf8_encode(utf8_decode($fila['Municipio'])).', '.utf8_encode(utf8_decode($fila['Estado'])).'</small></h2>
                                        
                                         <div class="boxed_mini_details1 clearfix">
-                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
-                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
-                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila['M2Construccion'].'</span>
+                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
+                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
                                         </div>
                                         
                                     </div><!-- end boxes -->
@@ -227,36 +227,36 @@
 						}else{
 							$box="boxes";
 						}
-						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= number_format($fila[PrecioVenta]);
+						if ($fila['PrecioVenta']!=0) {
+                                            	$precio= number_format($fila['PrecioVenta']);
                                             } else {
-                                            	$precio= number_format($fila[PrecioRenta]);
+                                            	$precio= number_format($fila['PrecioRenta']);
                                             }  
-						if ($fila[Destaque]==1) {
+						if ($fila['Destaque']==1) {
 										$rejillaUp.=' <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			                                    <div class="'.$box.'" >
 			                                        <div class="ImageWrapper boxes_img">
-			                                        <img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-			                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+			                                        <img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+			                                            <!--<img src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 			                                            <div class="ImageOverlayH"></div>
 			                                            <div class="Buttons StyleSc">
 			                                                <span class="WhiteSquare"><a class="fancybox" href=""><i class="fa fa-search"></i></a>
 			                                                </span>
 			                                                <!--<span class="WhiteSquare"><a class="fancybox" data-type="iframe" href="http://player.vimeo.com/video/64550407?autoplay=1"><i class="fa fa-video-camera"></i></a>
 			                                                </span>-->
-			                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila[idPropiedad].'"><i class="fa fa-link"></i></a>
+			                                                <span class="WhiteSquare"><a href="single-property.php?id='.$fila['idPropiedad'].'"><i class="fa fa-link"></i></a>
 			                                                </span>
 			                                            </div>
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
-			                                            <div class="status_type">'.utf8_encode(utf8_decode($fila[EstatusVenta])).'</div>
+			                                            <div class="status_type">'.utf8_encode(utf8_decode($fila['EstatusVenta'])).'</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0,30))).'</a> <small class="small_title">'.$fila[CP].', '.utf8_encode(utf8_decode($fila[Colonia])).', '.utf8_encode(utf8_decode($fila[Municipio])).', '.utf8_encode(utf8_decode($fila[Estado])).'</small></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0,30))).'</a> <small class="small_title">'.$fila['CP'].', '.utf8_encode(utf8_decode($fila['Colonia'])).', '.utf8_encode(utf8_decode($fila['Municipio'])).', '.utf8_encode(utf8_decode($fila['Estado'])).'</small></h2>
 			                                       
 			                                        <div class="boxed_mini_details1 clearfix">
-			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila[M2Construccion].'</span>
-			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-			                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
-			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
+			                                            <span class="sqft last"><strong>C-m2</strong><i class="icon-sqft"></i>'.$fila['M2Construccion'].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+			                                            <span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
 			                                </div><!-- end div -->';
@@ -350,27 +350,27 @@
 						}else{
 							$box="boxes";
 						}
-						if ($fila[PrecioVenta]!=0) {
-                                            	$precio= number_format($fila[PrecioVenta]);
+						if ($fila['PrecioVenta']!=0) {
+                                            	$precio= number_format($fila['PrecioVenta']);
                                             } else {
-                                            	$precio= number_format($fila[PrecioRenta]);
+                                            	$precio= number_format($fila['PrecioRenta']);
                                             }  
             			
             			$todas .='<div class="col-lg-4 col-md-4 col-sm-4">
 	                                    <div class="'.$box.'">
 	                                        <div class="boxes_img ImageWrapper">
 												<a href="single-property.php">
-												<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-													<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+												<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+													<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 													<div class="PStyleNe"></div>
 												</a>
 	                                            <div class="box_type">$'.$precio.' M.N.</div>
 	                                        </div>
-	                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+	                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0 ,18))).'</a></h2>
 	                                        <div class="boxed_mini_details clearfix">
-	                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-	                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-	                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+	                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+	                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
+	                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
 	                                        </div>
 	                                    </div><!-- end boxes -->
 	                                </div>';
@@ -395,27 +395,27 @@
 								}else{
 									$box="boxes";
 								}
-								if ($fila[PrecioVenta]!=0) {
-		                                            	$precio= number_format($fila[PrecioVenta]);
+								if ($fila['PrecioVenta']!=0) {
+		                                            	$precio= number_format($fila['PrecioVenta']);
 		                                            } else {
-		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            	$precio= number_format($fila['PrecioRenta']);
 		                                            }  
 		            			
 		            			$residencial .='<div class="col-lg-4 col-md-4 col-sm-4">
 			                                    <div class="'.$box.'">
 			                                        <div class="boxes_img ImageWrapper">
 														<a href="single-property.php">
-														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 															<div class="PStyleNe"></div>
 														</a>
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0 ,18))).'</a></h2>
 			                                        <div class="boxed_mini_details clearfix">
-			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
 			                                </div>';
@@ -437,27 +437,27 @@
 								}else{
 									$box="boxes";
 								}
-								if ($fila[PrecioVenta]!=0) {
-		                                            	$precio= number_format($fila[PrecioVenta]);
+								if ($fila['PrecioVenta']!=0) {
+		                                            	$precio= number_format($fila['PrecioVenta']);
 		                                            } else {
-		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            	$precio= number_format($fila['PrecioRenta']);
 		                                            }  
 		            			
 		            			$comer .='<div class="col-lg-4 col-md-4 col-sm-4">
 			                                    <div class="'.$box.'">
 			                                        <div class="boxes_img ImageWrapper">
 														<a href="single-property.php">
-														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 															<div class="PStyleNe"></div>
 														</a>
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0 ,18))).'</a></h2>
 			                                        <div class="boxed_mini_details clearfix">
-			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
 			                                </div>';
@@ -480,27 +480,27 @@
 								}else{
 									$box="boxes";
 								}
-								if ($fila[PrecioVenta]!=0) {
-		                                            	$precio= number_format($fila[PrecioVenta]);
+								if ($fila['PrecioVenta']!=0) {
+		                                            	$precio= number_format($fila['PrecioVenta']);
 		                                            } else {
-		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            	$precio= number_format($fila['PrecioRenta']);
 		                                            }  
 		            			
 		            			$terreno .='<div class="col-lg-4 col-md-4 col-sm-4">
 			                                    <div class="'.$box.'">
 			                                        <div class="boxes_img ImageWrapper">
 														<a href="single-property.php">
-														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 															<div class="PStyleNe"></div>
 														</a>
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0 ,18))).'</a></h2>
 			                                        <div class="boxed_mini_details clearfix">
-			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
 			                                </div>';
@@ -514,7 +514,7 @@
        		$lista=$this->conexion->query("SELECT DISTINCT Estado FROM consultapropiedad2 WHERE idcliente='$this->id' AND Estatus='1' AND publicacion='1'")or die("no estados");
        		if ($lista->num_rows>0) {
        			while ($row=$lista->fetch_array(MYSQL_ASSOC)) {
-       				$dato.='<option value="'.utf8_encode(utf8_decode($row[Estado])).'">'.utf8_encode(utf8_decode($row[Estado])).'</option>';
+       				$dato.='<option value="'.utf8_encode(utf8_decode($row['Estado'])).'">'.utf8_encode(utf8_decode($row['Estado'])).'</option>';
        			}
        		}
        		return $dato;
@@ -617,30 +617,30 @@
 			//echo $qry;
 			$result=$this->conexion->query($qry)or die(" no hay resultado");
 			while ($res=$result->fetch_array(MYSQL_ASSOC)) {
-				if ($res[PrecioVenta]!=0) {
-                    	$precio= number_format($res[PrecioVenta]);
+				if ($res['PrecioVenta']!=0) {
+                    	$precio= number_format($res['PrecioVenta']);
                     } else {
-                    	$precio= number_format($res[PrecioRenta]);
+                    	$precio= number_format($res['PrecioRenta']);
                     } 
 
-                if ($res[idTipo]=="Departamento") {
+                if ($res['idTipo']=="Departamento") {
                    	$tipe="Depto.";
                    }else{
-                   	$tipe=$res[idTipo];
+                   	$tipe=$res['idTipo'];
                    }   
 				
 				$str.='<div class="property_wrapper boxes clearfix">
 							<div class="ImageWrapper boxes_img">
-								<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg">
-								<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg" alt="">-->
+								<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res['idPropiedad'].'/principal.jpg">
+								<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$res['idPropiedad'].'/principal.jpg" alt="">-->
 								<div class="ImageOverlayH"></div>
 								<div class="Buttons StyleMg">
-									<span class="WhiteSquare"><a class="fancybox" href="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>
-									<!--<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res[idPropiedad].'/principal.jpg"><i class="fa fa-search"></i></a></span>-->
-									<span class="WhiteSquare"><a href="single-property.php?id='.$res[idPropiedad].'"><i class="fa fa-link"></i></a></span>
+									<span class="WhiteSquare"><a class="fancybox" href="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$res['idPropiedad'].'/principal.jpg"><i class="fa fa-search"></i></a></span>
+									<!--<span class="WhiteSquare"><a class="fancybox" href="../../imagenes_cy/'.$this->id.'/'.$res['idPropiedad'].'/principal.jpg"><i class="fa fa-search"></i></a></span>-->
+									<span class="WhiteSquare"><a href="single-property.php?id='.$res['idPropiedad'].'"><i class="fa fa-link"></i></a></span>
 								</div><!-- end Buttons -->
 								<div class="box_type">$ '.$precio.' M.N.</div>
-								<div class="status_type">'.utf8_encode(utf8_decode($res[EstatusVenta])).'</div>
+								<div class="status_type">'.utf8_encode(utf8_decode($res['EstatusVenta'])).'</div>
 							</div><!-- ImageWrapper -->
                             
 							<!--<div class="title clearfix">
@@ -651,18 +651,18 @@
 							</div>--><!-- end title -->
 
 							<div class="boxed_mini_details1 clearfix">
-								<span class="type first"><strong>Tipo</strong><a href="single-property.php?id='.$res[idPropiedad].'">'.$tipe.'</a></span>
-								<span class="sqft"><strong>M2T</strong><i class="icon-sqft"></i> '.$res[M2terreno].'</span>
-								<span class="garage"><strong>Garage</strong><i class="icon-garage"></i> '.$res[NumeroCocherasDescubiertas].'</span>
-								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> '.$res[NumeroCuartos].'</span>
-								<span class="status"><strong>Baños</strong><i class="icon-bath"></i> '.$res[NumeroBanios].'</span>
+								<span class="type first"><strong>Tipo</strong><a href="single-property.php?id='.$res['idPropiedad'].'">'.$tipe.'</a></span>
+								<span class="sqft"><strong>M2T</strong><i class="icon-sqft"></i> '.$res['M2terreno'].'</span>
+								<span class="garage"><strong>Garage</strong><i class="icon-garage"></i> '.$res['NumeroCocherasDescubiertas'].'</span>
+								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> '.$res['NumeroCuartos'].'</span>
+								<span class="status"><strong>Baños</strong><i class="icon-bath"></i> '.$res['NumeroBanios'].'</span>
 								<!--<span class="furnished"><strong>Furnish</strong><i class="icon-furnished"></i> Yes</span>
 								<span class="pool last"><strong>Pool</strong><i class="icon-pool"></i> Yes</span>-->
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                            	<p>'.nl2br(utf8_encode(utf8_decode(substr($res[Descripcion], 0,250)))) .'</p>
-                                <a class="btn btn-primary btn-xs" href="single-property.php?id='.$res[idPropiedad].'" title="">Leer más</a>
+                            	<p>'.nl2br(utf8_encode(utf8_decode(substr($res['Descripcion'], 0,250)))) .'</p>
+                                <a class="btn btn-primary btn-xs" href="single-property.php?id='.$res['idPropiedad'].'" title="">Leer más</a>
                             </div>
                         </div><!-- end property_wrapper -->';
 			}
@@ -687,8 +687,8 @@
                                         <img class="img-circle img-responsive img-thumbnail" alt="" src="logotipo/logo.jpg">
                                     </div>
                                     <div class="testimonial_desc">
-                                    <h3 class="title">'.nl2br($testim[descripcion]).'</h3>
-                                    <p><i class="fa fa-quote-left"></i> '.nl2br(substr($testim[comentario], 0,150)).'<a href="testimonials.php"> leer mas...</a><i class="fa fa-quote-right"></i></p>
+                                    <h3 class="title">'.nl2br($testim['descripcion']).'</h3>
+                                    <p><i class="fa fa-quote-left"></i> '.nl2br(substr($testim['comentario'], 0,150)).'<a href="testimonials.php"> leer mas...</a><i class="fa fa-quote-right"></i></p>
                                     </div>
                                 </div>
                             </div><!--end testim-->';
@@ -713,8 +713,8 @@
                                     	<img class="img-circle img-responsive img-thumbnail" alt="" src="logotipo/logo.jpg">
                                     </div>
                                     <div class="testimonial_desc">
-                                    <h3 class="title">'.nl2br($testim[descripcion]).'</h3>
-                                    <p><i class="fa fa-quote-left"></i>'.nl2br($testim[comentario]).'<i class="fa fa-quote-right"></i></p>
+                                    <h3 class="title">'.nl2br($testim['descripcion']).'</h3>
+                                    <p><i class="fa fa-quote-left"></i>'.nl2br($testim['comentario']).'<i class="fa fa-quote-right"></i></p>
                                     </div>
 								</div><!--end testim-->';
                             $cont++;
@@ -731,25 +731,25 @@ class SliderPrincipal extends Conexion
         public function slider(){
             $sliders = $this->conexion->query("SELECT * FROM consultapropiedad2 WHERE idcliente='$this->id' AND Destaque='1' AND Estatus='1' AND publicacion='1'")or die("Falló query del slider");
             while ($slide = $sliders->fetch_array(MYSQL_ASSOC)){
-            	if ($slide[PrecioVenta]!=0) {
-	                	$precio= number_format($slide[PrecioVenta]);
+            	if ($slide['PrecioVenta']!=0) {
+	                	$precio= number_format($slide['PrecioVenta']);
 	                } else {
-	                	$precio= number_format($slide[PrecioRenta]);
+	                	$precio= number_format($slide['PrecioRenta']);
 	                }
                	
                 $grid .= '
                     <li>
                         <div class="desc">
                             <div class="ps-desc">
-                                <h3><a href="single-property.php?id='.$slide[idPropiedad].'">'.utf8_encode(utf8_decode($slide[titulo])).'</a></h3>
-                                <p>'.nl2br(utf8_encode(utf8_decode(substr($slide[Descripcion], 0,140)))) .' <a href="single-property.php?id='.$slide[idPropiedad].'">Leer Más</a></p>
+                                <h3><a href="single-property.php?id='.$slide['idPropiedad'].'">'.utf8_encode(utf8_decode($slide['titulo'])).'</a></h3>
+                                <p>'.nl2br(utf8_encode(utf8_decode(substr($slide['Descripcion'], 0,140)))) .' <a href="single-property.php?id='.$slide['idPropiedad'].'">Leer Más</a></p>
                                 <span class="type">Casa</span>
                                 <span class="price">$'.$precio.' M.N.</span>
-                                <a href="single-property.php?id='.$slide[idPropiedad].'" class="status">'.utf8_encode(utf8_decode($slide[EstatusVenta])).'</a>
+                                <a href="single-property.php?id='.$slide['idPropiedad'].'" class="status">'.utf8_encode(utf8_decode($slide['EstatusVenta'])).'</a>
                             </div>
                         </div>
-                        <a href="#"><img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>
-                        <!--<a href="#"><img src="../../imagenes_cy/'.$this->id.'/'.$slide[idPropiedad].'/principal.jpg"></a>-->
+                        <a href="#"><img src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$slide['idPropiedad'].'/principal.jpg"></a>
+                        <!--<a href="#"><img src="../../imagenes_cy/'.$this->id.'/'.$slide['idPropiedad'].'/principal.jpg"></a>-->
                     </li>
                 ';
             }
@@ -795,27 +795,27 @@ class SliderPrincipal extends Conexion
 								}else{
 									$box="boxes";
 								}
-								if ($fila[PrecioVenta]!=0) {
-		                                            	$precio= number_format($fila[PrecioVenta]);
+								if ($fila['PrecioVenta']!=0) {
+		                                            	$precio= number_format($fila['PrecioVenta']);
 		                                            } else {
-		                                            	$precio= number_format($fila[PrecioRenta]);
+		                                            	$precio= number_format($fila['PrecioRenta']);
 		                                            }  
 		            			
 		            			$comun .='<div class="col-lg-4 col-md-4 col-sm-4">
 			                                    <div class="'.$box.'">
 			                                        <div class="boxes_img ImageWrapper">
 														<a href="single-property.php">
-														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">
-															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila[idPropiedad].'/principal.jpg">-->
+														<img class="img-responsive" src="http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">
+															<!--<img class="img-responsive" src="../../imagenes_cy/'.$this->id.'/'.$fila['idPropiedad'].'/principal.jpg">-->
 															<div class="PStyleNe"></div>
 														</a>
 			                                            <div class="box_type">$'.$precio.' M.N.</div>
 			                                        </div>
-			                                        <h2 class="title"><a href="single-property.php?id='.$fila[idPropiedad].'"> '.utf8_encode(utf8_decode(substr($fila[titulo], 0 ,18))).'</a></h2>
+			                                        <h2 class="title"><a href="single-property.php?id='.$fila['idPropiedad'].'"> '.utf8_encode(utf8_decode(substr($fila['titulo'], 0 ,18))).'</a></h2>
 			                                        <div class="boxed_mini_details clearfix">
-			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila[M2terreno].'</span>
-			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila[NumeroBanios].'</span>
-			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila[NumeroCuartos].'</span>
+			                                            <span class="sqft last"><strong>T-m2</strong><i class="icon-sqft"></i>'.$fila['M2terreno'].'</span>
+			                                            <span class="status"><strong>Baños</strong><i class="icon-bath"></i>'.$fila['NumeroBanios'].'</span>
+			                                            <span class="bedrooms last"><strong>Hab.</strong><i class="icon-bed"></i>'.$fila['NumeroCuartos'].'</span>
 			                                        </div>
 			                                    </div><!-- end boxes -->
 			                                </div>';

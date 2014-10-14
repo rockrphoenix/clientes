@@ -11,7 +11,7 @@
     $secc=$muestra->seccion();
    
     while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
-        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+        $str.= "<li><a  href='secciones.php?idsecc=".$section['idseccion']."'>".$section['titulo']."</a></li>";
 
     }
 

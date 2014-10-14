@@ -15,13 +15,13 @@
     $secc=$muestra->seccion();
    
     while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
-        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+        $str.= "<li><a  href='secciones.php?idsecc=".$section['idseccion']."'>".$section['titulo']."</a></li>";
 
     }
     $aConf = $muestra->obtenerConfiguracion();
     $estilos = file_get_contents('style.css');
-    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
-    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $estilos = str_replace('[{color_a}]','#'.$aConf['ColorFondo'],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf['ColorPrincipal'],$estilos);
     $nvoEstilo = fopen('prueba.css', 'w+');
     fwrite($nvoEstilo, $estilos);
     fclose($nvoEstilo);
@@ -75,8 +75,8 @@
 
 </head>
 <body>
-<input type="hidden" name="color_A" id="color_A" <?php echo 'value="#'.$aConf[ColorFondo].'"'; ?> >
-    <input type="hidden" name="color_B" id="color_B" <?php echo 'value="#'.$aConf[ColorPrincipal].'"'; ?> >
+<input type="hidden" name="color_A" id="color_A" <?php echo 'value="#'.$aConf['ColorFondo'].'"'; ?> >
+    <input type="hidden" name="color_B" id="color_B" <?php echo 'value="#'.$aConf['ColorPrincipal'].'"'; ?> >
         <!--<div class="toolbar-wrapp">
             <div class="sticky-toolbar">
                 <ul>
@@ -198,20 +198,20 @@
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                          <?php 
-                            if (!$redes[twitter]) {
+                            if (!$redes['twitter']) {
                                 $twit.="";
                             }else{
-                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
+                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes['twitter']."' ><i class='fa fa-twitter'></i></a></span>";
                             }
-                            if (!$redes[facebook]) {
+                            if (!$redes['facebook']) {
                                 $face.="";
                             }else{
-                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
+                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes['facebook']."'><i class='fa fa-facebook'></i></a></span>";
                             }
-                            if (!$redes[youtube]) {
+                            if (!$redes['youtube']) {
                                 $yout.="";
                             }else{
-                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
+                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes['youtube']."'><i class='fa fa-youtube'></i></a></span>";
                             }
 
                             echo $twit;

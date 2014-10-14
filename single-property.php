@@ -12,22 +12,22 @@
     //var_dump($slider);
     $aConf = $muestra->obtenerConfiguracion();
     $estilos = file_get_contents('style.css');
-    $estilos = str_replace('[{color_a}]','#'.$aConf[ColorFondo],$estilos);
-    $estilos = str_replace('[{color_b}]','#'.$aConf[ColorPrincipal],$estilos);
+    $estilos = str_replace('[{color_a}]','#'.$aConf['ColorFondo'],$estilos);
+    $estilos = str_replace('[{color_b}]','#'.$aConf['ColorPrincipal'],$estilos);
     $nvoEstilo = fopen('prueba.css', 'w+');
     fwrite($nvoEstilo, $estilos);
     fclose($nvoEstilo);
 
     $unica = $propSelect->fetch_array(MYSQL_ASSOC);
-    if ($unica[PrecioVenta]!=0) {
-        $precio= number_format($unica[PrecioVenta]);
+    if ($unica['PrecioVenta']!=0) {
+        $precio= number_format($unica['PrecioVenta']);
     } else {
-        $precio= number_format($unica[PrecioRenta]);
+        $precio= number_format($unica['PrecioRenta']);
     }
      $secc=$muestra->seccion();
    
     while ( $section = $secc->fetch_array(MYSQL_ASSOC)) {
-        $str.= "<li><a  href='secciones.php?idsecc=".$section[idseccion]."'>".$section[titulo]."</a></li>";
+        $str.= "<li><a  href='secciones.php?idsecc=".$section['idseccion']."'>".$section['titulo']."</a></li>";
 
     }
        
@@ -82,8 +82,8 @@
 
 </head>
 <body>
-<input type="hidden" name="color_A" id="color_A" <?php echo 'value="#'.$aConf[ColorFondo].'"'; ?> >
-    <input type="hidden" name="color_B" id="color_B" <?php echo 'value="#'.$aConf[ColorPrincipal].'"'; ?> >
+<input type="hidden" name="color_A" id="color_A" <?php echo 'value="#'.$aConf['ColorFondo'].'"'; ?> >
+    <input type="hidden" name="color_B" id="color_B" <?php echo 'value="#'.$aConf['ColorPrincipal'].'"'; ?> >
         <!--<div class="toolbar-wrapp">
             <div class="sticky-toolbar">
                 <ul>
@@ -205,20 +205,20 @@
                     <div class="col-lg-5 col-md-5 col-sm-12  pull-right">
                         <div class="social clearfix pull-right">
                           <?php 
-                            if (!$redes[twitter]) {
+                            if (!$redes['twitter']) {
                                 $twit.="";
                             }else{
-                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
+                                $twit.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes['twitter']."' ><i class='fa fa-twitter'></i></a></span>";
                             }
-                            if (!$redes[facebook]) {
+                            if (!$redes['facebook']) {
                                 $face.="";
                             }else{
-                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
+                                $face.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes['facebook']."'><i class='fa fa-facebook'></i></a></span>";
                             }
-                            if (!$redes[youtube]) {
+                            if (!$redes['youtube']) {
                                 $yout.="";
                             }else{
-                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
+                                $yout.="<span><a data-placement='bottom' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes['youtube']."'><i class='fa fa-youtube'></i></a></span>";
                             }
 
                             echo $twit;
@@ -240,9 +240,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <ul class="breadcrumb">
                         <li><a href="index.php">Inicio</a></li>
-                        <li><?php echo utf8_encode(utf8_decode($unica[titulo])); ?></li>
+                        <li><?php echo utf8_encode(utf8_decode($unica['titulo'])); ?></li>
                     </ul>
-                    <h2><?php echo utf8_encode(utf8_decode($unica[titulo])); ?></h2>
+                    <h2><?php echo utf8_encode(utf8_decode($unica['titulo'])); ?></h2>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         
@@ -347,8 +347,8 @@
                             
 							<div class="title clearfix">
                             	<!--<span class="agent_img pull-right"><a data-placement="bottom" data-toggle="tooltip" data-original-title="Mark ANTHONY" title="" href="single-agent.html"><img width="75" class="img-responsive img-thumbnail" src="demos/03_team.png" alt=""></a></span>-->
-                            	<h3><?php echo utf8_encode($unica[titulo]); ?>
-                                <small class="small_title"><?php echo $unica[CP].", ".utf8_encode(utf8_decode($unica[Colonia])).", ".utf8_encode(utf8_decode($unica[Municipio])).", ".utf8_encode(utf8_decode($unica[Estado])); ?> <mark><?php if ($unica[EstatusVenta]=="Venta-Renta") {echo "Venta $ ".number_format($unica[PrecioVenta])." M.N.  / Renta $ ".number_format($unica[PrecioRenta])."M.N.";}else{echo $precio." M.N.";}  ?></mark></small>
+                            	<h3><?php echo utf8_encode($unica['titulo']); ?>
+                                <small class="small_title"><?php echo $unica['CP'].", ".utf8_encode(utf8_decode($unica['Colonia'])).", ".utf8_encode(utf8_decode($unica['Municipio'])).", ".utf8_encode(utf8_decode($unica['Estado'])); ?> <mark><?php if ($unica['EstatusVenta']=="Venta-Renta") {echo "Venta $ ".number_format($unica['PrecioVenta'])." M.N.  / Renta $ ".number_format($unica['PrecioRenta'])."M.N.";}else{echo $precio." M.N.";}  ?></mark></small>
                                 </h3>
 							</div><!-- end title -->
                             <div class="title clearfix">
@@ -361,143 +361,163 @@
                                         
                             </div>
                             <div class="title clearfix">
-                                
-                                    <a <?php echo 'href="clases/pdf.php?idProp='.$_GET[id].'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/pdf4.png" alt="Exportar a PDF"></a>
+                                    <?php 
+                                        $url="http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                                        $cod=base64_encode($url);
+                                     ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <caption>Exportación de archivos</caption>
+                                            <th>PDF</th><th>Trovit</th><th>Nuroa</th><th>Yakaz</th><th>Sumavisos</th><th>Olx</th>
+                                        </thead>
+                                        <tbody>
+                                            <td><a <?php echo 'href="clases/pdf.php?idProp='.$_GET['id'].'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/pdf4.png" alt="Exportar a PDF"></a></td>
+                                            <td><a <?php echo 'href="creaxmltrov.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td><a <?php echo 'href="creaxmlnuro.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td><a <?php echo 'href="creaxmlyakaz.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td><a <?php echo 'href="creaxmlsuma.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                             <td><a <?php echo 'href="creaxmlolx.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    
+                                    
                                  
                             </div>
 
 							<div class="boxed_mini_details1 clearfix">
-                            <?php if ($unica[idTipo]=="Departamento") {
+                            <?php if ($unica['idTipo']=="Departamento") {
                                         $tipe="Depto.";
-                                    }elseif ($unica[idTipo]=="Condominio") {
+                                    }elseif ($unica['idTipo']=="Condominio") {
                                         $tipe="Condo.";
                                     }else{
-                                        $tipe=$unica[idTipo];
+                                        $tipe=$unica['idTipo'];
                                     } ?>
 								<span class="type first"><strong>Tipo</strong><a href="agencies.html"><?php echo utf8_encode($tipe); ?></a></span>
-								<span class="sqft"><strong>C-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2Construccion] ;?></span>
-                                <span class="sqft"><strong>T-m2</strong><i class="icon-sqft"></i> <?php echo $unica[M2terreno] ;?></span>
-								<span class="garage"><strong>Cochera</strong><i class="icon-garage"></i> <?php echo $unica[NumeroCocheras] ;?></span>
-								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> <?php echo $unica[NumeroCuartos] ;?></span>
-								<span class="status"><strong>Baños</strong><i class="icon-bath"></i> <?php echo $unica[NumeroBanios] ;?></span>
+								<span class="sqft"><strong>C-m2</strong><i class="icon-sqft"></i> <?php echo $unica['M2Construccion'] ;?></span>
+                                <span class="sqft"><strong>T-m2</strong><i class="icon-sqft"></i> <?php echo $unica['M2terreno'] ;?></span>
+								<span class="garage"><strong>Cochera</strong><i class="icon-garage"></i> <?php echo $unica['NumeroCocheras'] ;?></span>
+								<span class="bedrooms"><strong>Hab.</strong><i class="icon-bed"></i> <?php echo $unica['NumeroCuartos'] ;?></span>
+								<span class="status"><strong>Baños</strong><i class="icon-bath"></i> <?php echo $unica['NumeroBanios'] ;?></span>
 								<!--<span class="furnished"><strong>Furnish</strong><i class="icon-furnished"></i> Yes</span>
 								<span class="pool last"><strong>Pool</strong><i class="icon-pool"></i> Yes</span>-->
 							</div><!-- end boxed_mini_details1 -->
                             
                             <div class="property_desc clearfix">
-                                <p><strong><?php echo nl2br(utf8_encode(utf8_decode($unica[Descripcion]))) ; ?></strong></p>
-                                <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica[idPersonalizado])); ?></strong></p>
-                                 <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica[EstatusVenta])); ?></strong></p>
+                                <p><strong><?php echo nl2br(utf8_encode(utf8_decode($unica['Descripcion']))) ; ?></strong></p>
+                                <p><strong>Clave personalizada: <?php echo utf8_encode(utf8_decode($unica['idPersonalizado'])); ?></strong></p>
+                                 <p><strong>Estatus: <?php echo utf8_encode(utf8_decode($unica['EstatusVenta'])); ?></strong></p>
 
-                                <?php switch ($unica[idTipo]) {
+                                <?php switch ($unica['idTipo']) {
                                     case 'Casa':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros cuadrados de jardín: ".$unica[M2Jardin]."</p>
-                                            <p>Número de recámaras: ".$unica[NumeroCuartos]."</p>
-                                            <p>Número de baños: ".$unica[NumeroBanios]."</p>
-                                            <p>Número de medios baños: ".$unica[NumeroMediosBanios]."</p>
-                                            <p>Número de cocheras: ".$unica[NumeroCocheras]."</p>
-                                            <p>Cuartos de servicio: ".$unica[CuartoServicio]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros cuadrados de jardín: ".$unica['M2Jardin']."</p>
+                                            <p>Número de recámaras: ".$unica['NumeroCuartos']."</p>
+                                            <p>Número de baños: ".$unica['NumeroBanios']."</p>
+                                            <p>Número de medios baños: ".$unica['NumeroMediosBanios']."</p>
+                                            <p>Número de cocheras: ".$unica['NumeroCocheras']."</p>
+                                            <p>Cuartos de servicio: ".$unica['CuartoServicio']."</p>";
                                         break;
                                     case 'Condominio':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros cuadrados de jardín: ".$unica[M2Jardin]."</p>
-                                            <p>Número de recámaras: ".$unica[NumeroCuartos]."</p>
-                                            <p>Número de baños: ".$unica[NumeroBanios]."</p>
-                                            <p>Número de medios baños: ".$unica[NumeroMediosBanios]."</p>
-                                            <p>Número de cocheras: ".$unica[NumeroCocheras]."</p>
-                                            <p>Cuartos de servicio: ".$unica[CuartoServicio]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros cuadrados de jardín: ".$unica['M2Jardin']."</p>
+                                            <p>Número de recámaras: ".$unica['NumeroCuartos']."</p>
+                                            <p>Número de baños: ".$unica['NumeroBanios']."</p>
+                                            <p>Número de medios baños: ".$unica['NumeroMediosBanios']."</p>
+                                            <p>Número de cocheras: ".$unica['NumeroCocheras']."</p>
+                                            <p>Cuartos de servicio: ".$unica['CuartoServicio']."</p>";
                                         break;    
                                     case 'Departamento':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros cuadrados de jardín: ".$unica[M2Jardin]."</p>
-                                            <p>Número de recámaras: ".$unica[NumeroCuartos]."</p>
-                                            <p>Número de baños: ".$unica[NumeroBanios]."</p>
-                                            <p>Número de medios baños: ".$unica[NumeroMediosBanios]."</p>
-                                            <p>Número de cocheras: ".$unica[NumeroCocheras]."</p>
-                                            <p>Cuartos de servicio: ".$unica[CuartoServicio]."</p>
-                                            <p>Niveles construidos: ".$unica[NivelesConstruidos]."</p>
-                                            <p>Nivel de ubicación: ".$unica[NivelUbicacion]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros cuadrados de jardín: ".$unica['M2Jardin']."</p>
+                                            <p>Número de recámaras: ".$unica['NumeroCuartos']."</p>
+                                            <p>Número de baños: ".$unica['NumeroBanios']."</p>
+                                            <p>Número de medios baños: ".$unica['NumeroMediosBanios']."</p>
+                                            <p>Número de cocheras: ".$unica['NumeroCocheras']."</p>
+                                            <p>Cuartos de servicio: ".$unica['CuartoServicio']."</p>
+                                            <p>Niveles construidos: ".$unica['NivelesConstruidos']."</p>
+                                            <p>Nivel de ubicación: ".$unica['NivelUbicacion']."</p>";
                                             break;  
                                     case 'Edificio':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Número de unidades habitacionales: ".$unica[nunidades]."</p>
-                                            <p>Número de unidades no habitacionales: ".$unica[nnounidades]."</p>
-                                            <p>Número de cocheras descubiertas: ".$unica[NumeroCocheras]."</p>
-                                            <p>Número de cocheras cubiertas: ".$unica[NumeroCocherasDescubiertas]."</p>
-                                            <p>Número de cocheras para visitas: ".$unica[NumeroCocherasVisitas]."</p>
-                                            <p>Niveles del edificio: ".$unica[NivelesConstruidos]."</p>
-                                            <p>Clasificación del edificio: ".$unica[idClasificacionEdificio]."</p>
-                                            <p>Estado de conservacion: ".$unica[EstadoConservacion]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Número de unidades habitacionales: ".$unica['nunidades']."</p>
+                                            <p>Número de unidades no habitacionales: ".$unica['nnounidades']."</p>
+                                            <p>Número de cocheras descubiertas: ".$unica['NumeroCocheras']."</p>
+                                            <p>Número de cocheras cubiertas: ".$unica['NumeroCocherasDescubiertas']."</p>
+                                            <p>Número de cocheras para visitas: ".$unica['NumeroCocherasVisitas']."</p>
+                                            <p>Niveles del edificio: ".$unica['NivelesConstruidos']."</p>
+                                            <p>Clasificación del edificio: ".$unica['idClasificacionEdificio']."</p>
+                                            <p>Estado de conservacion: ".$unica['EstadoConservacion']."</p>";
                                             break; 
                                     case 'Local':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros de frente: ".$unica[Mfrente]."</p>
-                                            <p>Metros de fondo: ".$unica[Mfondo]."</p>
-                                            <p>Ubicacion: ".$unica[Ubicacion]."</p>
-                                            <p>Número de baños: ".$unica[NumeroBanios]."</p>
-                                            <p>Niveles construidos: ".$unica[NivelesConstruidos]."</p>
-                                            <p>Nivele de ubicacion: ".$unica[NivelUbicacion]."</p>
-                                            <p>Número de cocheras: ".$unica[NumeroCocheras]."</p>
-                                            <p>Estado de conservacion: ".$unica[EstadoConservacion]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros de frente: ".$unica['Mfrente']."</p>
+                                            <p>Metros de fondo: ".$unica['Mfondo']."</p>
+                                            <p>Ubicacion: ".$unica['Ubicacion']."</p>
+                                            <p>Número de baños: ".$unica['NumeroBanios']."</p>
+                                            <p>Niveles construidos: ".$unica['NivelesConstruidos']."</p>
+                                            <p>Nivele de ubicacion: ".$unica['NivelUbicacion']."</p>
+                                            <p>Número de cocheras: ".$unica['NumeroCocheras']."</p>
+                                            <p>Estado de conservacion: ".$unica['EstadoConservacion']."</p>";
                                             break; 
                                     case 'Oficina':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Número de privados: ".$unica[NumeroPrivados]."</p>
-                                            <p>Número baños: ".$unica[NumeroBanios]."</p>
-                                            <p>Número de cocheras descubiertas: ".$unica[NumeroCocherasDescubiertas]."</p>
-                                            <p>Número de cocheras cubiertas: ".$unica[NumeroCocheras]."</p>
-                                            <p>Número de cocheras para visitas: ".$unica[NumeroCocherasVisitas]."</p>
-                                            <p>Niveles construidos: ".$unica[NivelesConstruidos]."</p>
-                                            <p>Ubicación de la oficina: ".$unica[NivelUbicacion]."</p>
-                                            <p>Estado de conservacion: ".$unica[EstadoConservacion]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Número de privados: ".$unica['NumeroPrivados']."</p>
+                                            <p>Número baños: ".$unica['NumeroBanios']."</p>
+                                            <p>Número de cocheras descubiertas: ".$unica['NumeroCocherasDescubiertas']."</p>
+                                            <p>Número de cocheras cubiertas: ".$unica['NumeroCocheras']."</p>
+                                            <p>Número de cocheras para visitas: ".$unica['NumeroCocherasVisitas']."</p>
+                                            <p>Niveles construidos: ".$unica['NivelesConstruidos']."</p>
+                                            <p>Ubicación de la oficina: ".$unica['NivelUbicacion']."</p>
+                                            <p>Estado de conservacion: ".$unica['EstadoConservacion']."</p>";
                                             break; 
                                     case 'Terreno':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros de frente: ".$unica[Mfrente]."</p>
-                                            <p>Metros de fondo: ".$unica[Mfondo]."</p>
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros de frente: ".$unica['Mfrente']."</p>
+                                            <p>Metros de fondo: ".$unica['Mfondo']."</p>
                                             
-                                            <p>Forma del terreno: ".$unica[FormaTerreno]."</p>
-                                            <p>Uso de suelo: ".$unica[UsoSuelo]."</p>";
+                                            <p>Forma del terreno: ".$unica['FormaTerreno']."</p>
+                                            <p>Uso de suelo: ".$unica['UsoSuelo']."</p>";
                                             break; 
                                     case 'Bodega':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Metros de frente: ".$unica[Mfrente]."</p>
-                                            <p>Metros de fondo: ".$unica[Mfondo]."</p>
-                                            <p>Concentración industrial: ".$unica[ConcentracionIndustrial]."</p>
-                                            <p>Ferrocarril: ".$unica[Ferrocarril]."</p>
-                                            <p>Transporte multimodal: ".$unica[TransporteMultimodal]."</p>
-                                            <p>Metros cuadrados de bodega: ".$unica[m2bodega]."</p>
-                                            <p>Metros cuadrados de oficina: ".$unica[M2Oficina]."</p>
-                                            <p>andenes: ".$unica[Andenes]."</p>
-                                            <p>Área de maniobras: ".$unica[AreaManiobras]."</p>
-                                            <p>Altura libre del inmueble (metros): ".$unica[AlturaLibre]."</p>
-                                            <p>Tipo de techo: ".$unica[TipoTecho]."</p>
-                                            <p>Carga soportada en toneladas: ".$unica[CargaPisoToneladas]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Metros de frente: ".$unica['Mfrente']."</p>
+                                            <p>Metros de fondo: ".$unica['Mfondo']."</p>
+                                            <p>Concentración industrial: ".$unica['ConcentracionIndustrial']."</p>
+                                            <p>Ferrocarril: ".$unica['Ferrocarril']."</p>
+                                            <p>Transporte multimodal: ".$unica['TransporteMultimodal']."</p>
+                                            <p>Metros cuadrados de bodega: ".$unica['m2bodega']."</p>
+                                            <p>Metros cuadrados de oficina: ".$unica['M2Oficina']."</p>
+                                            <p>andenes: ".$unica['Andenes']."</p>
+                                            <p>Área de maniobras: ".$unica['AreaManiobras']."</p>
+                                            <p>Altura libre del inmueble (metros): ".$unica['AlturaLibre']."</p>
+                                            <p>Tipo de techo: ".$unica['TipoTecho']."</p>
+                                            <p>Carga soportada en toneladas: ".$unica['CargaPisoToneladas']."</p>";
                                             break;                                            
                                     case 'Rancho':
-                                        echo " <p>Metros cuadrados de terreno: ".$unica[M2terreno]."</p>
-                                            <p>Metros cuadrados de construcción: ".$unica[M2Construccion]."</p>
-                                            <p>Hectáreas: ".$unica[Hectareas]."</p>
-                                            <p>Sistema de riego: ".$unica[SistemaRiego]."</p>
-                                            <p>Vista panorámica: ".$unica[VistaPannoramica]."</p>
-                                            <p>Abierto a visitantes: ".$unica[AbiertoVisitantes]."</p>
-                                            <p>Río cercano: ".$unica[RioCercano]."</p>
-                                            <p>Establo o caballeriza: ".$unica[Establo]."</p>
-                                            <p>Metros cuadrados de jardín: ".$unica[M2Jardin]."</p>
-                                            <p>Superficie agrícola: ".$unica[SuperficieAgricola]."</p>
-                                            <p>Superficie de pastizal: ".$unica[superficiePastizal]."</p>
-                                            <p>Superficie habitable: ".$unica[SuperficieHabitable]."</p>
-                                            <p>Número de pozos: ".$unica[NumeroPozos]."</p>
-                                            <p>número de casas: ".$unica[NumeroCasas]."</p>";
+                                        echo " <p>Metros cuadrados de terreno: ".$unica['M2terreno']."</p>
+                                            <p>Metros cuadrados de construcción: ".$unica['M2Construccion']."</p>
+                                            <p>Hectáreas: ".$unica['Hectareas']."</p>
+                                            <p>Sistema de riego: ".$unica['SistemaRiego']."</p>
+                                            <p>Vista panorámica: ".$unica['VistaPannoramica']."</p>
+                                            <p>Abierto a visitantes: ".$unica['AbiertoVisitantes']."</p>
+                                            <p>Río cercano: ".$unica['RioCercano']."</p>
+                                            <p>Establo o caballeriza: ".$unica['Establo']."</p>
+                                            <p>Metros cuadrados de jardín: ".$unica['M2Jardin']."</p>
+                                            <p>Superficie agrícola: ".$unica['SuperficieAgricola']."</p>
+                                            <p>Superficie de pastizal: ".$unica['superficiePastizal']."</p>
+                                            <p>Superficie habitable: ".$unica['SuperficieHabitable']."</p>
+                                            <p>Número de pozos: ".$unica['NumeroPozos']."</p>
+                                            <p>número de casas: ".$unica['NumeroCasas']."</p>";
                                             break;
                                     default:
                                         # code...

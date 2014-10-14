@@ -77,20 +77,20 @@
                 	<div class="col-lg-6 col-sm-6 col-md-6">
                         <div class="social clearfix pull-right">
                             <?php 
-                            if (!$redes[twitter]) {
+                            if (!$redes['twitter']) {
                                 $twit1.="";
                             }else{
-                                $twit1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes[twitter]."' ><i class='fa fa-twitter'></i></a></span>";
+                                $twit1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Twitter' title=''  target='_blank' href='".$redes['twitter']."' ><i class='fa fa-twitter'></i></a></span>";
                             }
-                            if (!$redes[facebook]) {
+                            if (!$redes['facebook']) {
                                 $face1.="";
                             }else{
-                                $face1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes[facebook]."'><i class='fa fa-facebook'></i></a></span>";
+                                $face1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Facebook' title=''  target='_blank' href='".$redes['facebook']."'><i class='fa fa-facebook'></i></a></span>";
                             }
-                            if (!$redes[youtube]) {
+                            if (!$redes['youtube']) {
                                 $yout1.="";
                             }else{
-                                $yout1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes[youtube]."'><i class='fa fa-youtube'></i></a></span>";
+                                $yout1.="<span><a data-placement='top' data-toggle='tooltip' data-original-title='Youtube' title='' target='_blank' href='".$redes['youtube']."'><i class='fa fa-youtube'></i></a></span>";
                             }
 
                             echo $twit1;

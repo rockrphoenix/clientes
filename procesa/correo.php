@@ -48,10 +48,10 @@ switch ($action) {
 					<tr>
 						<td>
 							<h3>Correo enviado desde yetinmobiliario.com</h3>
-							El usuario <b>'.$_POST[name].'</b> ha dejado un mensaje:<br>
-							'.$_POST[subject].'<br>
-							Puedes responder a este mensaje al correo: '.$_POST[email].'<br>
-							Puedes responder a este mensaje en el télefono: '.$_POST[phone].'<br>
+							El usuario <b>'.$_POST['name'].'</b> ha dejado un mensaje:<br>
+							'.$_POST['subject'].'<br>
+							Puedes responder a este mensaje al correo: '.$_POST['email'].'<br>
+							Puedes responder a este mensaje en el télefono: '.$_POST['phone'].'<br>
 						</td>
 					</tr>
 					<tr>

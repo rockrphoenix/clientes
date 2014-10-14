@@ -27,7 +27,7 @@ class consult extends Conexion
 	function obtenImagenes(){
 			
 			
-					$dir = "../../../imagenes_cy/".$this->id."/".$_GET[idProp]."";
+					$dir = "../../../imagenes_cy/".$this->id."/".$_GET['idProp']."";
 					//$dir = "http://imagenes.yetinmobiliario.com/".$this->id."/".$_GET[idProp]."/";
 					
 					//var_dump($dir);
@@ -50,10 +50,10 @@ class consult extends Conexion
 					    while (false !== ($entrada = readdir($gestor))) {
 					        if ($entrada != "." && $entrada != "..") {
 					        	if ($entrada == "principal.jpg") {
-					        		$str[0]= 'http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[idProp].'/'.$entrada.'';
+					        		$str[0]= 'http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET['idProp'].'/'.$entrada.'';
 					        		
 					        	}else{
-					        		$str[]= 'http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET[idProp].'/'.$entrada.'';
+					        		$str[]= 'http://imagenes.yetinmobiliario.com/'.$this->id.'/'.$_GET['idProp'].'/'.$entrada.'';
 					        		
 					        	}
 					            $cont++;
@@ -419,13 +419,13 @@ class Pdf extends FPDF
 	
 	$pdf->SetMargins(20,20,20);
 	$pdf->Ln(10);
-	if ($result[PrecioVenta]!=0) {
-	                	$precio= number_format($result[PrecioVenta]);
+	if ($result['PrecioVenta']!=0) {
+	                	$precio= number_format($result['PrecioVenta']);
 	                } else {
-	                	$precio= number_format($result[PrecioRenta]);
+	                	$precio= number_format($result['PrecioRenta']);
 	                }
 	              
-	$pdf->PrintInfo(1,$result[titulo],$result[Descripcion],$result[idTipo],$result[EstatusVenta],$precio,$result[idPersonalizado],$result[NumeroCuartos],$result[NumeroBanios],$result[M2terreno],$result[M2Construccion],$result[Municipio],$result[Estado],$result[Colonia],$result[CP],$result[CuartoServicio],$result[NivelesConstruidos],$result[M2Jardin],$result[NumeroCocherasDescubiertas],$result[TipoDpto],$result[NumeroCocheras],$result[NumeroCocherasVisitas],$result[EstadoConservacion],$result[nunidades],$result[nnounidades],$result[Mfondo],$result[Mfrente],$result[NivelUbicacion],$result[NumeroPrivados],$result[FormaTerreno],$result[UsoSuelo],$result[ConcentracionIndustrial],$result[Ferrocarril],$result[TransporteMultimodal],$result[M2Oficina],$result[m2bodega],$result[Andenes],$result[AreaManiobras],$result[AlturaLibre],$result[TipoTecho],$result[CargaPisoToneladas],$result[Hectareas],$result[TipoRancho],$result[SistemaRiego],$result[VistaPanoramica],$result[AbiertoVisitantes],$result[LagunaCercana],$result[RioCercano],$result[Establo],$result[SuperficieAgricola],$result[SuperficiePastizal],$result[SuperficieHabitable],$result[NumeroPozos],$result[NumeroCasas],$result2[telprinc],$result2[telsec],$result2[correocontacto]);
+	$pdf->PrintInfo(1,$result['titulo'],$result['Descripcion'],$result['idTipo'],$result['EstatusVenta'],$precio,$result['idPersonalizado'],$result['NumeroCuartos'],$result['NumeroBanios'],$result['M2terreno'],$result['M2Construccion'],$result['Municipio'],$result['Estado'],$result['Colonia'],$result['CP'],$result['CuartoServicio'],$result['NivelesConstruidos'],$result['M2Jardin'],$result['NumeroCocherasDescubiertas'],$result['TipoDpto'],$result['NumeroCocheras'],$result['NumeroCocherasVisitas'],$result['EstadoConservacion'],$result['nunidades'],$result['nnounidades'],$result['Mfondo'],$result['Mfrente'],$result['NivelUbicacion'],$result['NumeroPrivados'],$result['FormaTerreno'],$result['UsoSuelo'],$result['ConcentracionIndustrial'],$result['Ferrocarril'],$result['TransporteMultimodal'],$result['M2Oficina'],$result['m2bodega'],$result['Andenes'],$result['AreaManiobras'],$result['AlturaLibre'],$result['TipoTecho'],$result['CargaPisoToneladas'],$result['Hectareas'],$result['TipoRancho'],$result['SistemaRiego'],$result['VistaPanoramica'],$result['AbiertoVisitantes'],$result['LagunaCercana'],$result['RioCercano'],$result['Establo'],$result['SuperficieAgricola'],$result['SuperficiePastizal'],$result['SuperficieHabitable'],$result['NumeroPozos'],$result['NumeroCasas'],$result2['telprinc'],$result2['telsec'],$result2['correocontacto']);
 	$link=$pdf->AddLink();
 	$pdf->Link(38,265,36,7,'http://yetinmobiliario.com/');
 	
