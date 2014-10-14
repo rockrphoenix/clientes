@@ -369,15 +369,16 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <caption>Exportación de archivos</caption>
-                                            <th>PDF</th><th>Trovit</th><th>Nuroa</th><th>Yakaz</th><th>Sumavisos</th><th>Olx</th>
+                                            <th>PDF</th><th>Trovit</th><th>Nuroa</th><th>Yakaz</th><th>Sumavisos</th><th>Olx</th><th>Locanto</th>
                                         </thead>
                                         <tbody>
-                                            <td><a <?php echo 'href="clases/pdf.php?idProp='.$_GET['id'].'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/pdf4.png" alt="Exportar a PDF"></a></td>
-                                            <td><a <?php echo 'href="creaxmltrov.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
-                                            <td><a <?php echo 'href="creaxmlnuro.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
-                                            <td><a <?php echo 'href="creaxmlyakaz.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
-                                            <td><a <?php echo 'href="creaxmlsuma.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
-                                             <td><a <?php echo 'href="creaxmlolx.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="clases/pdf.php?idProp='.$_GET['id'].'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/pdf4.png" alt="Exportar a PDF"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmltrov.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmlnuro.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmlyakaz.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmlsuma.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmlolx.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
+                                            <td class="col-lg-1"><a <?php echo 'href="creaxmlocanto.php?idcli='.$unica['idcliente'].'&idProp='.$_GET['id'].'&c='.$cod.'"'; ?> target="blank"><img class="img-thumbnail img-responsive" src="images/xml.png" alt="Exportar a XML"></a></td>
                                         </tbody>
                                     </table>
                                 </div>
